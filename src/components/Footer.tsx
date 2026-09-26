@@ -22,6 +22,7 @@ export default function Footer() {
           <div className="flex items-center gap-8">
             <a href="#about" className="text-gray-400 hover:text-white transition-colors text-sm">About</a>
             <a href="#experience" className="text-gray-400 hover:text-white transition-colors text-sm">Experience</a>
+            <a href="#resume" className="text-gray-400 hover:text-white transition-colors text-sm">Resume</a>
             <a href="#projects" className="text-gray-400 hover:text-white transition-colors text-sm">Projects</a>
             <a href="#contact" className="text-gray-400 hover:text-white transition-colors text-sm">Contact</a>
           </div>

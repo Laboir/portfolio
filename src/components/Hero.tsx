@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDown, Mail, Phone, Linkedin } from 'lucide-react';
+import { ArrowDown, Mail, Phone, Linkedin, FileText } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -61,8 +61,14 @@ export default function Hero() {
             View My Work
           </a>
           <a
-            href="#contact"
+            href="#resume"
             className="px-8 py-3 border-2 border-indigo-500 text-indigo-500 dark:text-indigo-400 rounded-full font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all duration-300 hover:-translate-y-1"
+          >
+            📄 My Resume
+          </a>
+          <a
+            href="#contact"
+            className="px-8 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-full font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300 hover:-translate-y-1"
           >
             Get In Touch
           </a>
@@ -75,22 +81,32 @@ export default function Hero() {
           <a
             href="mailto:pankajsengar071@gmail.com"
             className="text-gray-600 dark:text-gray-400 hover:text-indigo-500 transition-colors"
+            title="Email"
           >
             <Mail size={24} />
           </a>
           <a
             href="tel:+917557435690"
             className="text-gray-600 dark:text-gray-400 hover:text-indigo-500 transition-colors"
+            title="Phone"
           >
             <Phone size={24} />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://linkedin.com/in/pankajsengar071"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 dark:text-gray-400 hover:text-indigo-500 transition-colors"
+            title="LinkedIn"
           >
             <Linkedin size={24} />
+          </a>
+          <a
+            href="#resume"
+            className="text-gray-600 dark:text-gray-400 hover:text-indigo-500 transition-colors"
+            title="Resume"
+          >
+            <FileText size={24} />
           </a>
         </div>
 
