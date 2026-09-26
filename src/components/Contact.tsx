@@ -1,6 +1,5 @@
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
-import { useState } from 'react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -21,13 +20,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 lg:py-32 bg-gray-50 dark:bg-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Get In{' '}
             <span className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
@@ -38,16 +31,11 @@ export default function Contact() {
           <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Have a project in mind? Let's work together to bring your ideas to life.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid lg:grid-cols-5 gap-12">
           {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-2 space-y-8"
-          >
+          <div className="lg:col-span-2 space-y-8">
             <div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                 Let's talk about your project
@@ -59,10 +47,7 @@ export default function Contact() {
             </div>
 
             <div className="space-y-6">
-              <motion.div
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-4"
-              >
+              <div className="flex items-center gap-4 hover:translate-x-1 transition-transform">
                 <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center">
                   <Mail className="text-indigo-500" size={20} />
                 </div>
@@ -70,12 +55,9 @@ export default function Contact() {
                   <p className="text-sm text-gray-500 dark:text-gray-400">Email</p>
                   <p className="text-gray-900 dark:text-white font-medium">alex@example.com</p>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-4"
-              >
+              <div className="flex items-center gap-4 hover:translate-x-1 transition-transform">
                 <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center">
                   <Phone className="text-indigo-500" size={20} />
                 </div>
@@ -83,12 +65,9 @@ export default function Contact() {
                   <p className="text-sm text-gray-500 dark:text-gray-400">Phone</p>
                   <p className="text-gray-900 dark:text-white font-medium">+1 (555) 123-4567</p>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-4"
-              >
+              <div className="flex items-center gap-4 hover:translate-x-1 transition-transform">
                 <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center">
                   <MapPin className="text-indigo-500" size={20} />
                 </div>
@@ -96,7 +75,7 @@ export default function Contact() {
                   <p className="text-sm text-gray-500 dark:text-gray-400">Location</p>
                   <p className="text-gray-900 dark:text-white font-medium">San Francisco, CA</p>
                 </div>
-              </motion.div>
+              </div>
             </div>
 
             {/* Social Links */}
@@ -114,15 +93,10 @@ export default function Contact() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-3"
-          >
+          <div className="lg:col-span-3">
             <form
               onSubmit={handleSubmit}
               className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-sm border border-gray-100 dark:border-gray-700"
@@ -184,11 +158,9 @@ export default function Contact() {
                 />
               </div>
 
-              <motion.button
+              <button
                 type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full py-3 px-6 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl font-medium flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-indigo-500/30 transition-shadow"
+                className="w-full py-3 px-6 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl font-medium flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
               >
                 {submitted ? (
                   <>
@@ -199,9 +171,9 @@ export default function Contact() {
                     <Send size={18} /> Send Message
                   </>
                 )}
-              </motion.button>
+              </button>
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

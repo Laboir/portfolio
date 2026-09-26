@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import React from 'react';
 import { Heart, ArrowUp } from 'lucide-react';
 
 export default function Footer() {
@@ -25,13 +25,12 @@ export default function Footer() {
             <a href="#contact" className="text-gray-400 hover:text-white transition-colors text-sm">Contact</a>
           </div>
 
-          <motion.button
+          <button
             onClick={scrollToTop}
-            whileHover={{ y: -3 }}
-            className="p-3 bg-indigo-500/20 rounded-full text-indigo-400 hover:bg-indigo-500/30 transition-colors"
+            className="p-3 bg-indigo-500/20 rounded-full text-indigo-400 hover:bg-indigo-500/30 transition-colors hover:-translate-y-1 transform duration-300"
           >
             <ArrowUp size={20} />
-          </motion.button>
+          </button>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
