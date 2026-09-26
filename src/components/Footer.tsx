@@ -12,15 +12,16 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <a href="#home" className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-              AC.
+              Pankaj.
             </a>
             <p className="text-gray-400 mt-2 text-sm">
-              Building digital experiences that matter.
+              Digital Marketing Manager & Web Developer — Actively seeking new opportunities 🚀
             </p>
           </div>
 
           <div className="flex items-center gap-8">
             <a href="#about" className="text-gray-400 hover:text-white transition-colors text-sm">About</a>
+            <a href="#experience" className="text-gray-400 hover:text-white transition-colors text-sm">Experience</a>
             <a href="#projects" className="text-gray-400 hover:text-white transition-colors text-sm">Projects</a>
             <a href="#contact" className="text-gray-400 hover:text-white transition-colors text-sm">Contact</a>
           </div>
@@ -35,7 +36,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400 text-sm flex items-center justify-center gap-1">
-            © 2024 Alex Chen. Made with <Heart size={14} className="text-red-400 fill-red-400" /> and lots of coffee.
+            © 2026 Pankaj — Actively seeking new opportunities 🚀
           </p>
         </div>
       </div>

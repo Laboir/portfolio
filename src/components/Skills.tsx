@@ -2,44 +2,47 @@ import React from 'react';
 
 const skillCategories = [
   {
-    title: 'Frontend',
+    title: 'Digital Marketing',
     color: 'from-blue-500 to-cyan-500',
     skills: [
-      { name: 'React', level: 95 },
-      { name: 'TypeScript', level: 90 },
-      { name: 'Next.js', level: 88 },
-      { name: 'Tailwind CSS', level: 92 },
-      { name: 'Vue.js', level: 75 },
+      { name: 'SEO (On-page / Off-page / Technical)', level: 95 },
+      { name: 'Meta Ads', level: 90 },
+      { name: 'Content Writing', level: 88 },
+      { name: 'Keyword Research', level: 92 },
+      { name: 'Link Building', level: 85 },
+      { name: 'Google Analytics / GA4', level: 90 },
     ],
   },
   {
-    title: 'Backend',
+    title: 'Tools & Platforms',
     color: 'from-green-500 to-emerald-500',
     skills: [
-      { name: 'Node.js', level: 90 },
-      { name: 'Python', level: 85 },
-      { name: 'PostgreSQL', level: 82 },
-      { name: 'GraphQL', level: 78 },
-      { name: 'Docker', level: 80 },
+      { name: 'Semrush', level: 90 },
+      { name: 'Keyword Planner', level: 88 },
+      { name: 'Screaming Frog', level: 85 },
+      { name: 'Google Search Console', level: 92 },
+      { name: 'Canva', level: 85 },
+      { name: 'Reporting (Excel / Sheets)', level: 88 },
     ],
   },
   {
-    title: 'Tools & Others',
+    title: 'Technical Skills',
     color: 'from-purple-500 to-pink-500',
     skills: [
-      { name: 'Git', level: 92 },
-      { name: 'AWS', level: 78 },
-      { name: 'Figma', level: 70 },
-      { name: 'CI/CD', level: 82 },
-      { name: 'Testing', level: 85 },
+      { name: 'Next.js / React', level: 85 },
+      { name: 'HTML / CSS / JavaScript', level: 92 },
+      { name: 'TypeScript', level: 78 },
+      { name: 'Tailwind CSS', level: 90 },
+      { name: 'Node.js / Express', level: 80 },
+      { name: 'MongoDB / MySQL', level: 78 },
     ],
   },
 ];
 
 const techLogos = [
-  'React', 'TypeScript', 'Node.js', 'Python', 'Next.js',
-  'Tailwind', 'PostgreSQL', 'Docker', 'AWS', 'Git',
-  'GraphQL', 'Redis', 'MongoDB', 'Figma', 'Vercel'
+  'SEO', 'Meta Ads', 'Google Analytics', 'Semrush', 'Next.js',
+  'React', 'TypeScript', 'Tailwind', 'Node.js', 'MongoDB',
+  'WordPress', 'Canva', 'GSC', 'PHP', 'JavaScript'
 ];
 
 export default function Skills() {
@@ -55,7 +58,7 @@ export default function Skills() {
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto rounded-full" />
           <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Technologies and tools I use to bring ideas to life
+            A blend of marketing expertise and technical skills to drive growth
           </p>
         </div>
 

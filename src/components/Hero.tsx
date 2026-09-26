@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDown, Mail, Phone, Linkedin } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -30,16 +30,24 @@ export default function Hero() {
         >
           Hi, I'm{' '}
           <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            Alex Chen
+            Pankaj
           </span>
         </h1>
 
         <p
-          className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto animate-fade-in-up"
+          className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-4 max-w-3xl mx-auto animate-fade-in-up"
           style={{ animationDelay: '0.5s' }}
         >
-          A passionate Full-Stack Developer crafting beautiful, performant web experiences 
-          with modern technologies.
+          Digital Marketing Manager · Open to Work ✅
+        </p>
+
+        <p
+          className="text-lg text-gray-500 dark:text-gray-400 mb-8 max-w-3xl mx-auto animate-fade-in-up"
+          style={{ animationDelay: '0.6s' }}
+        >
+          Digital Marketing Specialist with 3.5+ years of experience in SEO, Meta Ads, 
+          social media, content, and lead generation. Also builds websites using Next.js, 
+          HTML, CSS, JavaScript, and PHP.
         </p>
 
         <div
@@ -65,12 +73,16 @@ export default function Hero() {
           style={{ animationDelay: '0.9s' }}
         >
           <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:pankajsengar071@gmail.com"
             className="text-gray-600 dark:text-gray-400 hover:text-indigo-500 transition-colors"
           >
-            <Github size={24} />
+            <Mail size={24} />
+          </a>
+          <a
+            href="tel:+917557435690"
+            className="text-gray-600 dark:text-gray-400 hover:text-indigo-500 transition-colors"
+          >
+            <Phone size={24} />
           </a>
           <a
             href="https://linkedin.com"
@@ -79,12 +91,6 @@ export default function Hero() {
             className="text-gray-600 dark:text-gray-400 hover:text-indigo-500 transition-colors"
           >
             <Linkedin size={24} />
-          </a>
-          <a
-            href="mailto:alex@example.com"
-            className="text-gray-600 dark:text-gray-400 hover:text-indigo-500 transition-colors"
-          >
-            <Mail size={24} />
           </a>
         </div>
 

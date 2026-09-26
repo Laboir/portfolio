@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -12,6 +12,11 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Open mailto with form data
+    const mailtoLink = `mailto:pankajsengar071@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    )}`;
+    window.location.href = mailtoLink;
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
     setFormData({ name: '', email: '', subject: '', message: '' });
@@ -22,14 +27,14 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Get In{' '}
+            Let's Work{' '}
             <span className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
-              Touch
+              Together
             </span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto rounded-full" />
           <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Have a project in mind? Let's work together to bring your ideas to life.
+            Hiring for a marketing role? I'd love to chat about how I can help your brand grow.
           </p>
         </div>
 
@@ -38,59 +43,59 @@ export default function Contact() {
           <div className="lg:col-span-2 space-y-8">
             <div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                Let's talk about your project
+                Get in touch
               </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                I'm always open to discussing new projects, creative ideas, or 
-                opportunities to be part of your vision.
+                I'm actively seeking new opportunities. Whether you need a digital marketing 
+                specialist, a web developer, or both — let's connect!
               </p>
             </div>
 
             <div className="space-y-6">
-              <div className="flex items-center gap-4 hover:translate-x-1 transition-transform">
+              <a
+                href="mailto:pankajsengar071@gmail.com"
+                className="flex items-center gap-4 hover:translate-x-1 transition-transform"
+              >
                 <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center">
                   <Mail className="text-indigo-500" size={20} />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 dark:text-gray-400">Email</p>
-                  <p className="text-gray-900 dark:text-white font-medium">alex@example.com</p>
+                  <p className="text-gray-900 dark:text-white font-medium">pankajsengar071@gmail.com</p>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-center gap-4 hover:translate-x-1 transition-transform">
+              <a
+                href="tel:+917557435690"
+                className="flex items-center gap-4 hover:translate-x-1 transition-transform"
+              >
                 <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center">
                   <Phone className="text-indigo-500" size={20} />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 dark:text-gray-400">Phone</p>
-                  <p className="text-gray-900 dark:text-white font-medium">+1 (555) 123-4567</p>
+                  <p className="text-gray-900 dark:text-white font-medium">+91-7557435690</p>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-center gap-4 hover:translate-x-1 transition-transform">
+              <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center">
                   <MapPin className="text-indigo-500" size={20} />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 dark:text-gray-400">Location</p>
-                  <p className="text-gray-900 dark:text-white font-medium">San Francisco, CA</p>
+                  <p className="text-gray-900 dark:text-white font-medium">India</p>
                 </div>
               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="pt-4">
-              <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Follow me</p>
-              <div className="flex gap-3">
-                {['GitHub', 'LinkedIn', 'Twitter', 'Dribbble'].map((social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="px-4 py-2 bg-white dark:bg-gray-700 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-indigo-500 hover:border-indigo-200 dark:hover:border-indigo-800 border border-gray-100 dark:border-gray-600 transition-colors"
-                  >
-                    {social}
-                  </a>
-                ))}
+            {/* Status */}
+            <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                <p className="text-green-700 dark:text-green-400 font-medium text-sm">
+                  ✅ Actively seeking new opportunities
+                </p>
               </div>
             </div>
           </div>
@@ -111,7 +116,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
-                    placeholder="John Doe"
+                    placeholder="Your name"
                     required
                   />
                 </div>
@@ -124,7 +129,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
-                    placeholder="john@example.com"
+                    placeholder="your@email.com"
                     required
                   />
                 </div>
@@ -139,7 +144,7 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
-                  placeholder="Project Inquiry"
+                  placeholder="Job Opportunity / Project Inquiry"
                   required
                 />
               </div>
@@ -153,7 +158,7 @@ export default function Contact() {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={5}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all resize-none"
-                  placeholder="Tell me about your project..."
+                  placeholder="Tell me about the opportunity..."
                   required
                 />
               </div>
@@ -164,7 +169,7 @@ export default function Contact() {
               >
                 {submitted ? (
                   <>
-                    <span>✓</span> Message Sent!
+                    <span>✓</span> Opening Email...
                   </>
                 ) : (
                   <>

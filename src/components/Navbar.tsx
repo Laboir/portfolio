@@ -5,6 +5,7 @@ const navLinks = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
+  { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -35,7 +36,7 @@ export default function Navbar() {
             href="#home"
             className="text-2xl font-bold bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-transform"
           >
-            AC.
+            P.
           </a>
 
           {/* Desktop Navigation */}
