@@ -56,29 +56,58 @@ export default function Projects({ onProjectClick }: Props) {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
-            <div
+            <button
               key={project.id}
-              onClick={() => onProjectClick(project.id)}
-              className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onProjectClick(project.id);
+              }}
+              className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer relative text-left w-full"
             >
               {/* Project Image Area */}
               <div className={`h-48 bg-gradient-to-br ${project.color} flex items-center justify-center relative overflow-hidden`}>
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                  className="w-full h-full object-cover opacity-80 group-hover:opacity-30 transition-all duration-500"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl">{project.emoji}</span>
-                    <span className="text-white font-bold text-lg">{project.title}</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                
+                {/* Hover Overlay with Project Details */}
+                <div className="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl">{project.emoji}</span>
+                      <span className="text-white font-bold text-lg">{project.title}</span>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 space-y-1">
+                      <p className="text-white/90 text-xs">
+                        <span className="font-semibold">Role:</span> {project.role}
+                      </p>
+                      <p className="text-white/90 text-xs">
+                        <span className="font-semibold">Type:</span> {project.projectType}
+                      </p>
+                      {project.technologies && (
+                        <p className="text-white/90 text-xs">
+                          <span className="font-semibold">Tech:</span> {project.technologies.slice(0, 3).join(', ')}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex items-center justify-between pt-2">
+                      <span className="text-white text-sm font-medium">View Full Case Study →</span>
+                      <ArrowUpRight className="text-white" size={20} />
+                    </div>
                   </div>
+                </div>
+
+                {/* Status Badge - Always Visible */}
+                <div className="absolute top-3 right-3">
                   <span className={`px-2 py-1 text-xs font-medium rounded-full ${
                     project.status === 'Live' 
-                      ? 'bg-green-500/30 text-green-100' 
-                      : 'bg-yellow-500/30 text-yellow-100'
+                      ? 'bg-green-500/90 text-white' 
+                      : 'bg-yellow-500/90 text-white'
                   }`}>
                     {project.status}
                   </span>
@@ -112,7 +141,7 @@ export default function Projects({ onProjectClick }: Props) {
                   <ArrowUpRight className="text-gray-400 group-hover:text-indigo-500 transition-colors" size={18} />
                 </div>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
