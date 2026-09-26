@@ -1,0 +1,131 @@
+import { motion } from 'framer-motion';
+import { Code, Palette, Server, Zap } from 'lucide-react';
+
+const highlights = [
+  {
+    icon: Code,
+    title: 'Clean Code',
+    description: 'Writing maintainable, scalable code with best practices',
+  },
+  {
+    icon: Palette,
+    title: 'UI/UX Design',
+    description: 'Creating intuitive and beautiful user interfaces',
+  },
+  {
+    icon: Server,
+    title: 'Full-Stack',
+    description: 'Building complete solutions from frontend to backend',
+  },
+  {
+    icon: Zap,
+    title: 'Performance',
+    description: 'Optimizing for speed and exceptional user experience',
+  },
+];
+
+export default function About() {
+  return (
+    <section id="about" className="py-20 lg:py-32 bg-white dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            About{' '}
+            <span className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
+              Me
+            </span>
+          </h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto rounded-full" />
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left - Image/Visual */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative"
+          >
+            <div className="relative w-full max-w-md mx-auto">
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 p-1">
+                <div className="w-full h-full rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center overflow-hidden">
+                  <div className="text-center p-8">
+                    <div className="text-8xl mb-4">👨‍💻</div>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="w-3 h-3 rounded-full bg-red-400" />
+                        <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                        <div className="w-3 h-3 rounded-full bg-green-400" />
+                      </div>
+                      <div className="font-mono text-sm text-gray-500 dark:text-gray-400 mt-4 space-y-1 text-left">
+                        <p><span className="text-purple-500">const</span> <span className="text-blue-500">developer</span> = {'{'}</p>
+                        <p className="pl-4"><span className="text-green-500">name</span>: <span className="text-orange-500">"Alex Chen"</span>,</p>
+                        <p className="pl-4"><span className="text-green-500">role</span>: <span className="text-orange-500">"Full-Stack Dev"</span>,</p>
+                        <p className="pl-4"><span className="text-green-500">experience</span>: <span className="text-purple-500">5</span>,</p>
+                        <p className="pl-4"><span className="text-green-500">passion</span>: <span className="text-orange-500">"Building things"</span></p>
+                        <p>{'}'}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-indigo-100 dark:bg-indigo-900/30 rounded-full blur-xl" />
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-100 dark:bg-purple-900/30 rounded-full blur-xl" />
+            </div>
+          </motion.div>
+
+          {/* Right - Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              A passionate developer based in San Francisco
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+              With over 5 years of experience in web development, I specialize in building 
+              modern, responsive applications using cutting-edge technologies. I'm passionate 
+              about creating seamless user experiences and writing clean, efficient code.
+            </p>
+            <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+              When I'm not coding, you can find me exploring new technologies, contributing 
+              to open-source projects, or sharing knowledge through blog posts and tech talks. 
+              I believe in continuous learning and pushing the boundaries of what's possible on the web.
+            </p>
+
+            <div className="grid grid-cols-2 gap-4">
+              {highlights.map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:border-indigo-200 dark:hover:border-indigo-800 transition-colors"
+                >
+                  <item.icon className="text-indigo-500 mb-2" size={24} />
+                  <h4 className="font-semibold text-gray-900 dark:text-white text-sm">
+                    {item.title}
+                  </h4>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    {item.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
