@@ -9,7 +9,6 @@ import ProjectDetail from './components/ProjectDetail';
 import Resume from './components/Resume';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import DownloadButton from './components/DownloadButton';
 import { projects } from './data/projects';
 
 export default function App() {
@@ -35,7 +34,6 @@ export default function App() {
         <Navbar />
         <ProjectDetail project={project} onBack={handleBack} />
         <Footer />
-        <DownloadButton />
       </div>
     );
   }
@@ -53,7 +51,6 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
-      <DownloadButton />
     </div>
   );
 }
