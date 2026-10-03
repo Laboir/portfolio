@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import TiltCard from './TiltCard';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -12,7 +14,6 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Open mailto with form data
     const mailtoLink = `mailto:pankajsengar071@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
     )}`;
@@ -23,161 +24,159 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 lg:py-32 bg-gray-50 dark:bg-gray-800">
+    <section id="contact" className="py-32 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-5xl sm:text-6xl font-black text-gray-900 mb-6">
             Let's Work{' '}
-            <span className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
+            <span className="text-indigo-600">
               Together
             </span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto rounded-full" />
-          <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Hiring for a marketing role? I'd love to chat about how I can help your brand grow.
+          <div className="w-24 h-1 bg-gray-900 mx-auto rounded-full" />
+          <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto">
+            Have a project in mind? Let's create something amazing together!
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid lg:grid-cols-5 gap-12">
+        <div className="grid lg:grid-cols-5 gap-8">
           {/* Contact Info */}
-          <div className="lg:col-span-2 space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                Get in touch
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                I'm actively seeking new opportunities. Whether you need a digital marketing 
-                specialist, a web developer, or both — let's connect!
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              <a
-                href="mailto:pankajsengar071@gmail.com"
-                className="flex items-center gap-4 hover:translate-x-1 transition-transform"
-              >
-                <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center">
-                  <Mail className="text-indigo-500" size={20} />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Email</p>
-                  <p className="text-gray-900 dark:text-white font-medium">pankajsengar071@gmail.com</p>
-                </div>
-              </a>
-
-              <a
-                href="tel:+917557435690"
-                className="flex items-center gap-4 hover:translate-x-1 transition-transform"
-              >
-                <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center">
-                  <Phone className="text-indigo-500" size={20} />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Phone</p>
-                  <p className="text-gray-900 dark:text-white font-medium">+91-7557435690</p>
-                </div>
-              </a>
-
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center">
-                  <MapPin className="text-indigo-500" size={20} />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Location</p>
-                  <p className="text-gray-900 dark:text-white font-medium">India</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Status */}
-            <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
-              <div className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                <p className="text-green-700 dark:text-green-400 font-medium text-sm">
-                  ✅ Actively seeking new opportunities
+          <div className="lg:col-span-2 space-y-6">
+            <TiltCard intensity={8}>
+              <div className="bg-white rounded-3xl p-8 shadow-sm border-2 border-gray-200">
+                <h3 className="text-3xl font-black mb-6 text-gray-900">Get in touch</h3>
+                <p className="text-gray-600 leading-relaxed mb-8 text-lg">
+                  I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
                 </p>
+
+                <div className="space-y-6">
+                  <a
+                    href="mailto:pankajsengar071@gmail.com"
+                    className="flex items-center gap-4 hover:translate-x-2 transition-transform"
+                  >
+                    <div className="w-14 h-14 rounded-xl bg-gray-100 flex items-center justify-center">
+                      <Mail size={24} className="text-gray-700" />
+                    </div>
+                    <div>
+                      <p className="text-gray-500 text-sm">Email</p>
+                      <p className="font-bold text-lg text-gray-900">pankajsengar071@gmail.com</p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="tel:+917557435690"
+                    className="flex items-center gap-4 hover:translate-x-2 transition-transform"
+                  >
+                    <div className="w-14 h-14 rounded-xl bg-gray-100 flex items-center justify-center">
+                      <Phone size={24} className="text-gray-700" />
+                    </div>
+                    <div>
+                      <p className="text-gray-500 text-sm">Phone</p>
+                      <p className="font-bold text-lg text-gray-900">+91-7557435690</p>
+                    </div>
+                  </a>
+
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-xl bg-gray-100 flex items-center justify-center">
+                      <MapPin size={24} className="text-gray-700" />
+                    </div>
+                    <div>
+                      <p className="text-gray-500 text-sm">Location</p>
+                      <p className="font-bold text-lg text-gray-900">India</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 p-4 bg-gray-50 rounded-2xl border-2 border-gray-200">
+                  <div className="flex items-center gap-3">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                    <p className="font-bold text-gray-900">Available for new opportunities</p>
+                  </div>
+                </div>
               </div>
-            </div>
+            </TiltCard>
           </div>
 
           {/* Contact Form */}
           <div className="lg:col-span-3">
-            <form
-              onSubmit={handleSubmit}
-              className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-sm border border-gray-100 dark:border-gray-700"
-            >
-              <div className="grid sm:grid-cols-2 gap-6 mb-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Your Name
-                  </label>
+            <TiltCard intensity={5}>
+              <form
+                onSubmit={handleSubmit}
+                className="bg-white rounded-3xl p-8 shadow-sm border-2 border-gray-200"
+              >
+                <div className="grid sm:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">Your Name</label>
+                    <input
+                      type="text"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-5 py-4 rounded-2xl border-2 border-gray-200 focus:border-gray-900 focus:ring-4 focus:ring-gray-100 outline-none transition-all"
+                      placeholder="John Doe"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">Your Email</label>
+                    <input
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-5 py-4 rounded-2xl border-2 border-gray-200 focus:border-gray-900 focus:ring-4 focus:ring-gray-100 outline-none transition-all"
+                      placeholder="john@example.com"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <label className="block text-sm font-bold text-gray-700 mb-2">Subject</label>
                   <input
                     type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
-                    placeholder="Your name"
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    className="w-full px-5 py-4 rounded-2xl border-2 border-gray-200 focus:border-gray-900 focus:ring-4 focus:ring-gray-100 outline-none transition-all"
+                    placeholder="Project Inquiry"
                     required
                   />
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Your Email
-                  </label>
-                  <input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
-                    placeholder="your@email.com"
+
+                <div className="mb-6">
+                  <label className="block text-sm font-bold text-gray-700 mb-2">Message</label>
+                  <textarea
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    rows={6}
+                    className="w-full px-5 py-4 rounded-2xl border-2 border-gray-200 focus:border-gray-900 focus:ring-4 focus:ring-gray-100 outline-none transition-all resize-none"
+                    placeholder="Tell me about your project..."
                     required
                   />
                 </div>
-              </div>
 
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
-                  placeholder="Job Opportunity / Project Inquiry"
-                  required
-                />
-              </div>
-
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Message
-                </label>
-                <textarea
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all resize-none"
-                  placeholder="Tell me about the opportunity..."
-                  required
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-3 px-6 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl font-medium flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
-              >
-                {submitted ? (
-                  <>
-                    <span>✓</span> Opening Email...
-                  </>
-                ) : (
-                  <>
-                    <Send size={18} /> Send Message
-                  </>
-                )}
-              </button>
-            </form>
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full py-4 px-6 bg-gray-900 text-white rounded-2xl font-black text-lg flex items-center justify-center gap-2 hover:bg-gray-800 transition-colors"
+                >
+                  {submitted ? (
+                    <>
+                      <span>✓</span> Message Sent!
+                    </>
+                  ) : (
+                    <>
+                      <Send size={20} /> Send Message
+                    </>
+                  )}
+                </motion.button>
+              </form>
+            </TiltCard>
           </div>
         </div>
       </div>

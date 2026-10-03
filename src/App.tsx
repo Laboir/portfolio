@@ -9,7 +9,6 @@ import ProjectDetail from './components/ProjectDetail';
 import Resume from './components/Resume';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import DownloadButton from './components/DownloadButton';
 import { projects } from './data/projects';
 
 export default function App() {
@@ -31,29 +30,27 @@ export default function App() {
 
   if (project) {
     return (
-      <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
+      <div className="min-h-screen bg-white text-gray-900 transition-colors">
         <Navbar />
         <ProjectDetail project={project} onBack={handleBack} />
         <Footer />
-        <DownloadButton />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
+    <div className="min-h-screen bg-white text-gray-900 transition-colors">
       <Navbar />
       <main>
         <Hero />
         <About />
         <Skills />
         <Experience />
-        <Resume />
         <Projects onProjectClick={handleProjectClick} />
+        <Resume />
         <Contact />
       </main>
       <Footer />
-      <DownloadButton />
     </div>
   );
 }

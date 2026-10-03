@@ -1,6 +1,8 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink, FileSpreadsheet, FileText, CheckCircle, Code, Tag, Briefcase, Activity } from 'lucide-react';
 import { Project } from '../data/projects';
+import TiltCard from './TiltCard';
 
 type Props = {
   project: Project;
@@ -9,143 +11,204 @@ type Props = {
 
 export default function ProjectDetail({ project, onBack }: Props) {
   return (
-    <section className="pt-24 pb-20 min-h-screen">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="pt-32 pb-20 min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
-        <button
+        <motion.button
           onClick={onBack}
-          className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-indigo-500 transition-colors mb-8 group"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="flex items-center gap-3 text-gray-600 hover:text-purple-600 transition-colors mb-8 group font-semibold"
         >
-          <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="font-medium">Back to Projects</span>
-        </button>
+          <ArrowLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
+          <span>Back to Projects</span>
+        </motion.button>
 
         {/* Hero Section */}
-        <div className={`relative rounded-3xl overflow-hidden mb-8 bg-gradient-to-br ${project.color} p-8 sm:p-12`}>
-          <div className="absolute inset-0 bg-black/20" />
-          <div className="relative z-10">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-5xl">{project.emoji}</span>
-              <div>
-                <span className={`inline-block px-3 py-1 text-xs font-medium rounded-full ${
-                  project.status === 'Live' 
-                    ? 'bg-green-500/20 text-green-100 border border-green-400/30' 
-                    : 'bg-yellow-500/20 text-yellow-100 border border-yellow-400/30'
-                }`}>
-                  {project.status === 'Live' ? '● Live' : '◐ In Progress'}
-                </span>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <TiltCard intensity={8}>
+            <div className={`relative rounded-3xl overflow-hidden mb-12 bg-gradient-to-br ${project.color} p-12 shadow-2xl`}>
+              <div className="absolute inset-0 bg-black/20" />
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="text-7xl">{project.emoji}</span>
+                  <div>
+                    <span className={`inline-block px-4 py-2 text-sm font-bold rounded-full ${
+                      project.status === 'Live' 
+                        ? 'bg-green-500/20 text-green-100 border-2 border-green-400/30' 
+                        : 'bg-yellow-500/20 text-yellow-100 border-2 border-yellow-400/30'
+                    }`}>
+                      {project.status === 'Live' ? '● Live' : '◐ In Progress'}
+                    </span>
+                  </div>
+                </div>
+                <h1 className="text-5xl sm:text-6xl font-black text-white mb-6">
+                  {project.title}
+                </h1>
+                <p className="text-white/90 text-xl max-w-3xl leading-relaxed">
+                  {project.shortDescription}
+                </p>
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 mt-8 px-8 py-4 bg-white text-gray-900 rounded-2xl font-bold hover:shadow-2xl transition-all hover:scale-105 text-lg"
+                  >
+                    <ExternalLink size={22} />
+                    Visit Live Website
+                  </a>
+                )}
               </div>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4">
-              {project.title}
-            </h1>
-            <p className="text-white/90 text-lg max-w-3xl">
-              {project.shortDescription}
-            </p>
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-white text-gray-900 rounded-full font-medium hover:shadow-lg transition-all hover:-translate-y-0.5"
-              >
-                <ExternalLink size={18} />
-                Visit Live Website
-              </a>
-            )}
-          </div>
-        </div>
+          </TiltCard>
+        </motion.div>
 
         {/* Project Meta Info */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 border border-gray-100 dark:border-gray-700">
-            <div className="flex items-center gap-2 text-indigo-500 mb-2">
-              <Briefcase size={16} />
-              <span className="text-xs font-medium uppercase tracking-wide">My Role</span>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="bg-white rounded-2xl p-6 border-2 border-gray-100 shadow-lg"
+          >
+            <div className="flex items-center gap-3 text-purple-600 mb-3">
+              <Briefcase size={20} />
+              <span className="text-xs font-bold uppercase tracking-wide">My Role</span>
             </div>
-            <p className="text-sm font-medium text-gray-900 dark:text-white">{project.role}</p>
-          </div>
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 border border-gray-100 dark:border-gray-700">
-            <div className="flex items-center gap-2 text-indigo-500 mb-2">
-              <Tag size={16} />
-              <span className="text-xs font-medium uppercase tracking-wide">Project Type</span>
+            <p className="text-lg font-bold text-gray-900">{project.role}</p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="bg-white rounded-2xl p-6 border-2 border-gray-100 shadow-lg"
+          >
+            <div className="flex items-center gap-3 text-purple-600 mb-3">
+              <Tag size={20} />
+              <span className="text-xs font-bold uppercase tracking-wide">Project Type</span>
             </div>
-            <p className="text-sm font-medium text-gray-900 dark:text-white">{project.projectType}</p>
-          </div>
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 border border-gray-100 dark:border-gray-700">
-            <div className="flex items-center gap-2 text-indigo-500 mb-2">
-              <Activity size={16} />
-              <span className="text-xs font-medium uppercase tracking-wide">Status</span>
+            <p className="text-lg font-bold text-gray-900">{project.projectType}</p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="bg-white rounded-2xl p-6 border-2 border-gray-100 shadow-lg"
+          >
+            <div className="flex items-center gap-3 text-purple-600 mb-3">
+              <Activity size={20} />
+              <span className="text-xs font-bold uppercase tracking-wide">Status</span>
             </div>
-            <p className="text-sm font-medium text-gray-900 dark:text-white">{project.status}</p>
-          </div>
+            <p className="text-lg font-bold text-gray-900">{project.status}</p>
+          </motion.div>
+          
           {project.technologies && (
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 border border-gray-100 dark:border-gray-700">
-              <div className="flex items-center gap-2 text-indigo-500 mb-2">
-                <Code size={16} />
-                <span className="text-xs font-medium uppercase tracking-wide">Tech Stack</span>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="bg-white rounded-2xl p-6 border-2 border-gray-100 shadow-lg"
+            >
+              <div className="flex items-center gap-3 text-purple-600 mb-3">
+                <Code size={20} />
+                <span className="text-xs font-bold uppercase tracking-wide">Tech Stack</span>
               </div>
-              <p className="text-sm font-medium text-gray-900 dark:text-white">{project.technologies.join(', ')}</p>
-            </div>
+              <p className="text-lg font-bold text-gray-900">{project.technologies.join(', ')}</p>
+            </motion.div>
           )}
         </div>
 
         {/* Overview */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <span className="w-8 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h2 className="text-4xl font-black text-gray-900 mb-6 flex items-center gap-4">
+            <span className="w-12 h-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full" />
             Overview
           </h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+          <p className="text-xl text-gray-600 leading-relaxed">
             {project.overview}
           </p>
-        </div>
+        </motion.div>
 
         {/* What I Did */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-            <span className="w-8 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h2 className="text-4xl font-black text-gray-900 mb-8 flex items-center gap-4">
+            <span className="w-12 h-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full" />
             What I Did
           </h2>
           <div className="space-y-4">
             {project.whatIDid.map((item, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="flex gap-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="flex gap-4 p-6 bg-white rounded-2xl border-2 border-gray-100 shadow-lg hover:shadow-xl transition-shadow"
               >
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-indigo-500 font-bold text-sm">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white font-black text-sm">
                   {index + 1}
                 </div>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{item}</p>
-              </div>
+                <p className="text-lg text-gray-700 leading-relaxed">{item}</p>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* What It Shows */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-            <span className="w-8 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h2 className="text-4xl font-black text-gray-900 mb-8 flex items-center gap-4">
+            <span className="w-12 h-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full" />
             What It Shows
           </h2>
           <div className="grid sm:grid-cols-2 gap-4">
             {project.whatItShows.map((item, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="flex gap-3 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-xl border border-indigo-100 dark:border-indigo-800/50"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="flex gap-4 p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl border-2 border-purple-100"
               >
-                <CheckCircle className="text-indigo-500 flex-shrink-0 mt-0.5" size={20} />
-                <p className="text-gray-700 dark:text-gray-300 font-medium">{item}</p>
-              </div>
+                <CheckCircle className="text-purple-600 flex-shrink-0 mt-1" size={24} />
+                <p className="text-lg text-gray-700 font-semibold">{item}</p>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Sheets & Reports */}
         {(project.sheets || project.reports) && (
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-              <span className="w-8 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <h2 className="text-4xl font-black text-gray-900 mb-8 flex items-center gap-4">
+              <span className="w-12 h-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full" />
               Documents & Sheets
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
@@ -155,16 +218,16 @@ export default function ProjectDetail({ project, onBack }: Props) {
                   href={sheet.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-700 hover:shadow-md transition-all group"
+                  className="flex items-center gap-4 p-6 bg-white rounded-2xl border-2 border-gray-100 hover:border-green-300 hover:shadow-xl transition-all group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
-                    <FileSpreadsheet className="text-green-600 dark:text-green-400" size={24} />
+                  <div className="w-14 h-14 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <FileSpreadsheet className="text-green-600" size={28} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors truncate">
+                    <p className="font-bold text-gray-900 group-hover:text-green-600 transition-colors truncate text-lg">
                       {sheet.label}
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">Google Sheets →</p>
+                    <p className="text-sm text-gray-500">Google Sheets →</p>
                   </div>
                 </a>
               ))}
@@ -174,44 +237,54 @@ export default function ProjectDetail({ project, onBack }: Props) {
                   href={report.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-md transition-all group"
+                  className="flex items-center gap-4 p-6 bg-white rounded-2xl border-2 border-gray-100 hover:border-blue-300 hover:shadow-xl transition-all group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
-                    <FileText className="text-blue-600 dark:text-blue-400" size={24} />
+                  <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <FileText className="text-blue-600" size={28} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">
+                    <p className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors truncate text-lg">
                       {report.label}
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">Google Docs →</p>
+                    <p className="text-sm text-gray-500">Google Docs →</p>
                   </div>
                 </a>
               ))}
             </div>
-          </div>
+          </motion.div>
         )}
 
         {/* Tags */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <span className="w-8 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full" />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h2 className="text-4xl font-black text-gray-900 mb-6 flex items-center gap-4">
+            <span className="w-12 h-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full" />
             Skills Used
           </h2>
           <div className="flex flex-wrap gap-3">
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
+                className="px-6 py-3 bg-white rounded-full text-base font-bold text-gray-700 border-2 border-gray-200 hover:border-purple-300 hover:text-purple-600 transition-colors"
               >
                 {tag}
               </span>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* CTA */}
-        <div className="text-center pt-8 border-t border-gray-100 dark:border-gray-800">
-          <p className="text-gray-600 dark:text-gray-300 mb-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center pt-12 border-t-2 border-gray-100"
+        >
+          <p className="text-xl text-gray-600 mb-6">
             Interested in working together?
           </p>
           <a
@@ -220,11 +293,11 @@ export default function ProjectDetail({ project, onBack }: Props) {
               e.preventDefault();
               onBack();
             }}
-            className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-full font-medium hover:shadow-lg hover:shadow-indigo-500/30 transition-all hover:-translate-y-0.5"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl font-black text-lg hover:shadow-2xl transition-all hover:scale-105"
           >
             Let's Connect
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,110 +1,163 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import TiltCard from './TiltCard';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const skillCategories = [
   {
-    title: 'Digital Marketing',
-    color: 'from-blue-500 to-cyan-500',
+    title: 'Frontend',
     skills: [
-      { name: 'SEO (On-page / Off-page / Technical)', level: 95 },
-      { name: 'Meta Ads', level: 90 },
-      { name: 'Content Writing', level: 88 },
-      { name: 'Keyword Research', level: 92 },
-      { name: 'Link Building', level: 85 },
-      { name: 'Google Analytics / GA4', level: 90 },
+      { name: 'React', level: 95 },
+      { name: 'TypeScript', level: 90 },
+      { name: 'Next.js', level: 88 },
+      { name: 'Tailwind CSS', level: 92 },
+      { name: 'Vue.js', level: 75 },
     ],
   },
   {
-    title: 'Tools & Platforms',
-    color: 'from-green-500 to-emerald-500',
+    title: 'Backend',
     skills: [
-      { name: 'Semrush', level: 90 },
-      { name: 'Keyword Planner', level: 88 },
-      { name: 'Screaming Frog', level: 85 },
-      { name: 'Google Search Console', level: 92 },
-      { name: 'Canva', level: 85 },
-      { name: 'Reporting (Excel / Sheets)', level: 88 },
+      { name: 'Node.js', level: 90 },
+      { name: 'Python', level: 85 },
+      { name: 'PostgreSQL', level: 82 },
+      { name: 'GraphQL', level: 78 },
+      { name: 'Docker', level: 80 },
     ],
   },
   {
-    title: 'Technical Skills',
-    color: 'from-purple-500 to-pink-500',
+    title: 'Tools & Others',
     skills: [
-      { name: 'Next.js / React', level: 85 },
-      { name: 'HTML / CSS / JavaScript', level: 92 },
-      { name: 'TypeScript', level: 78 },
-      { name: 'Tailwind CSS', level: 90 },
-      { name: 'Node.js / Express', level: 80 },
-      { name: 'MongoDB / MySQL', level: 78 },
+      { name: 'Git', level: 92 },
+      { name: 'AWS', level: 78 },
+      { name: 'Figma', level: 70 },
+      { name: 'CI/CD', level: 82 },
+      { name: 'Testing', level: 85 },
     ],
   },
 ];
 
 const techLogos = [
-  'SEO', 'Meta Ads', 'Google Analytics', 'Semrush', 'Next.js',
-  'React', 'TypeScript', 'Tailwind', 'Node.js', 'MongoDB',
-  'WordPress', 'Canva', 'GSC', 'PHP', 'JavaScript'
+  'React', 'TypeScript', 'Node.js', 'Python', 'Next.js',
+  'Tailwind', 'PostgreSQL', 'Docker', 'AWS', 'Git',
+  'GraphQL', 'Redis', 'MongoDB', 'Figma', 'Vercel'
 ];
 
 export default function Skills() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray('.skill-card').forEach((card: any, i: number) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 0,
+          y: 80,
+          rotationY: -30,
+          duration: 0.8,
+          delay: i * 0.15,
+          ease: 'power3.out',
+        });
+      });
+
+      gsap.utils.toArray('.tech-tag').forEach((tag: any, i: number) => {
+        gsap.from(tag, {
+          scrollTrigger: {
+            trigger: tag,
+            start: 'top 90%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 0,
+          scale: 0.5,
+          rotation: Math.random() * 20 - 10,
+          duration: 0.6,
+          delay: i * 0.05,
+          ease: 'back.out(1.7)',
+        });
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="skills" className="py-20 lg:py-32 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+    <section
+      ref={sectionRef}
+      id="skills"
+      className="py-32 relative overflow-hidden bg-gray-50"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-5xl sm:text-6xl font-black text-gray-900 mb-6">
             My{' '}
-            <span className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
+            <span className="text-indigo-600">
               Skills
             </span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto rounded-full" />
-          <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            A blend of marketing expertise and technical skills to drive growth
+          <div className="w-24 h-1 bg-gray-900 mx-auto rounded-full" />
+          <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto">
+            Technologies and tools I use to bring ideas to life
           </p>
-        </div>
+        </motion.div>
 
         {/* Tech Tags */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="flex flex-wrap justify-center gap-4 mb-20"
+        >
           {techLogos.map((tech) => (
-            <span
+            <div
               key={tech}
-              className="px-4 py-2 bg-white dark:bg-gray-700 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 shadow-sm border border-gray-100 dark:border-gray-600 hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300 hover:-translate-y-0.5 cursor-default"
+              className="tech-tag px-6 py-3 bg-white rounded-full text-gray-700 font-semibold border-2 border-gray-200 hover:border-gray-900 transition-all duration-300 cursor-default shadow-sm"
             >
               {tech}
-            </span>
+            </div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Skill Bars */}
         <div className="grid md:grid-cols-3 gap-8">
           {skillCategories.map((category) => (
-            <div
-              key={category.title}
-              className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300"
-            >
-              <h3 className={`text-xl font-bold mb-6 bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
-                {category.title}
-              </h3>
-              <div className="space-y-4">
-                {category.skills.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        {skill.name}
-                      </span>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {skill.level}%
-                      </span>
+            <TiltCard key={category.title} intensity={10} className="skill-card">
+              <div className="bg-white rounded-3xl p-8 border-2 border-gray-200 shadow-sm h-full">
+                <h3 className="text-3xl font-black mb-8 text-gray-900">
+                  {category.title}
+                </h3>
+                <div className="space-y-6">
+                  {category.skills.map((skill) => (
+                    <div key={skill.name}>
+                      <div className="flex justify-between mb-2">
+                        <span className="text-lg font-semibold text-gray-700">{skill.name}</span>
+                        <span className="text-lg font-bold text-gray-500">{skill.level}%</span>
+                      </div>
+                      <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${skill.level}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1.5, ease: 'easeOut' }}
+                          className="h-full bg-gray-900 rounded-full"
+                        />
+                      </div>
                     </div>
-                    <div className="w-full h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-                      <div
-                        className={`h-full bg-gradient-to-r ${category.color} rounded-full transition-all duration-1000`}
-                        style={{ width: `${skill.level}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            </TiltCard>
           ))}
         </div>
       </div>
