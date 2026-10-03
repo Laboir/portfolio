@@ -3,16 +3,16 @@ import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import TiltCard from './TiltCard';
-import { ExternalLink, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { projects } from '../data/projects';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const categories = [
   { key: 'all', label: 'All Projects' },
-  { key: 'marketing', label: '📣 SEO & Marketing' },
-  { key: 'webdev', label: '🌐 Web Development' },
-  { key: 'content', label: '📝 Content' },
+  { key: 'marketing', label: 'SEO & Marketing' },
+  { key: 'webdev', label: 'Web Development' },
+  { key: 'content', label: 'Content' },
 ];
 
 type Props = {
@@ -29,7 +29,6 @@ export default function Projects({ onProjectClick }: Props) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate project cards on scroll
       gsap.utils.toArray('.project-card').forEach((card: any, i: number) => {
         gsap.from(card, {
           scrollTrigger: {
@@ -54,17 +53,8 @@ export default function Projects({ onProjectClick }: Props) {
     <section
       ref={sectionRef}
       id="projects"
-      className="py-32 relative overflow-hidden"
-      style={{
-        background: 'linear-gradient(to bottom, #ffffff 0%, #f1f5f9 100%)',
-      }}
+      className="py-32 relative overflow-hidden bg-gray-50"
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl" />
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -75,11 +65,11 @@ export default function Projects({ onProjectClick }: Props) {
         >
           <h2 className="text-5xl sm:text-6xl font-black text-gray-900 mb-6">
             Featured{' '}
-            <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <span className="text-indigo-600">
               Projects
             </span>
           </h2>
-          <div className="w-24 h-2 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-gray-900 mx-auto rounded-full" />
           <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto">
             Real projects I've worked on — click any project to see the full case study
           </p>
@@ -98,7 +88,7 @@ export default function Projects({ onProjectClick }: Props) {
               onClick={() => setActiveCategory(cat.key)}
               className={`px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 ${
                 activeCategory === cat.key
-                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-xl shadow-purple-500/30'
+                  ? 'bg-gray-900 text-white shadow-lg'
                   : 'bg-white text-gray-700 hover:bg-gray-100 border-2 border-gray-200'
               }`}
             >
@@ -112,12 +102,10 @@ export default function Projects({ onProjectClick }: Props) {
             <TiltCard key={project.id} intensity={12} className="project-card">
               <div 
                 onClick={() => onProjectClick(project.id)}
-                className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 h-full cursor-pointer"
+                className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 h-full cursor-pointer border-2 border-gray-200 hover:border-gray-900"
               >
                 {/* Project Image/Icon Area */}
-                <div
-                  className={`h-56 bg-gradient-to-br ${project.color} flex items-center justify-center relative overflow-hidden`}
-                >
+                <div className="h-56 bg-gray-100 flex items-center justify-center relative overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -168,11 +156,11 @@ export default function Projects({ onProjectClick }: Props) {
                 {/* Project Info */}
                 <div className="p-8">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-2xl font-black text-gray-900 group-hover:text-purple-600 transition-colors">
+                    <h3 className="text-2xl font-black text-gray-900 group-hover:text-indigo-600 transition-colors">
                       {project.title}
                     </h3>
                     <ArrowUpRight
-                      className="text-gray-400 group-hover:text-purple-600 transition-colors transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                      className="text-gray-400 group-hover:text-indigo-600 transition-colors transform group-hover:translate-x-1 group-hover:-translate-y-1"
                       size={24}
                     />
                   </div>
@@ -181,7 +169,7 @@ export default function Projects({ onProjectClick }: Props) {
                     {project.tags.slice(0, 4).map((tag) => (
                       <span
                         key={tag}
-                        className="px-4 py-2 text-sm font-semibold bg-gray-100 text-gray-700 rounded-full hover:bg-purple-100 hover:text-purple-700 transition-colors cursor-default"
+                        className="px-4 py-2 text-sm font-semibold bg-gray-100 text-gray-700 rounded-full hover:bg-gray-900 hover:text-white transition-colors cursor-default"
                       >
                         {tag}
                       </span>

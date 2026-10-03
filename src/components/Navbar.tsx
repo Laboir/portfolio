@@ -29,7 +29,7 @@ export default function Navbar() {
       transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/90 backdrop-blur-xl shadow-lg border-b border-gray-200/50'
+          ? 'bg-white/95 backdrop-blur-xl shadow-sm border-b border-gray-200'
           : 'bg-transparent'
       }`}
     >
@@ -37,7 +37,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           <motion.a
             href="#home"
-            className="text-3xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
+            className="text-3xl font-black text-gray-900"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -50,20 +50,20 @@ export default function Navbar() {
               <motion.a
                 key={link.name}
                 href={link.href}
-                className="relative px-6 py-2 text-gray-700 hover:text-purple-600 transition-colors font-semibold group"
+                className="relative px-6 py-2 text-gray-700 hover:text-gray-900 transition-colors font-semibold group"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
                 {link.name}
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-900 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
               </motion.a>
             ))}
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-700 hover:text-purple-600 transition-colors"
+            className="md:hidden text-gray-700 hover:text-gray-900 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -78,14 +78,14 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-200"
+            className="md:hidden bg-white border-b-2 border-gray-200"
           >
             <div className="px-4 py-6 space-y-4">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="block text-gray-700 hover:text-purple-600 font-semibold py-3 text-lg transition-colors"
+                  className="block text-gray-700 hover:text-gray-900 font-semibold py-3 text-lg transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}

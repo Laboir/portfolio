@@ -35,11 +35,11 @@ export default function Contact() {
         >
           <h2 className="text-5xl sm:text-6xl font-black text-gray-900 mb-6">
             Let's Work{' '}
-            <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <span className="text-indigo-600">
               Together
             </span>
           </h2>
-          <div className="w-24 h-2 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-gray-900 mx-auto rounded-full" />
           <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto">
             Have a project in mind? Let's create something amazing together!
           </p>
@@ -49,9 +49,9 @@ export default function Contact() {
           {/* Contact Info */}
           <div className="lg:col-span-2 space-y-6">
             <TiltCard intensity={8}>
-              <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-8 text-white shadow-2xl">
-                <h3 className="text-3xl font-black mb-6">Get in touch</h3>
-                <p className="text-white/90 leading-relaxed mb-8 text-lg">
+              <div className="bg-white rounded-3xl p-8 shadow-sm border-2 border-gray-200">
+                <h3 className="text-3xl font-black mb-6 text-gray-900">Get in touch</h3>
+                <p className="text-gray-600 leading-relaxed mb-8 text-lg">
                   I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
                 </p>
 
@@ -60,12 +60,12 @@ export default function Contact() {
                     href="mailto:pankajsengar071@gmail.com"
                     className="flex items-center gap-4 hover:translate-x-2 transition-transform"
                   >
-                    <div className="w-14 h-14 rounded-xl bg-white/20 flex items-center justify-center">
-                      <Mail size={24} />
+                    <div className="w-14 h-14 rounded-xl bg-gray-100 flex items-center justify-center">
+                      <Mail size={24} className="text-gray-700" />
                     </div>
                     <div>
-                      <p className="text-white/70 text-sm">Email</p>
-                      <p className="font-bold text-lg">pankajsengar071@gmail.com</p>
+                      <p className="text-gray-500 text-sm">Email</p>
+                      <p className="font-bold text-lg text-gray-900">pankajsengar071@gmail.com</p>
                     </div>
                   </a>
 
@@ -73,30 +73,30 @@ export default function Contact() {
                     href="tel:+917557435690"
                     className="flex items-center gap-4 hover:translate-x-2 transition-transform"
                   >
-                    <div className="w-14 h-14 rounded-xl bg-white/20 flex items-center justify-center">
-                      <Phone size={24} />
+                    <div className="w-14 h-14 rounded-xl bg-gray-100 flex items-center justify-center">
+                      <Phone size={24} className="text-gray-700" />
                     </div>
                     <div>
-                      <p className="text-white/70 text-sm">Phone</p>
-                      <p className="font-bold text-lg">+91-7557435690</p>
+                      <p className="text-gray-500 text-sm">Phone</p>
+                      <p className="font-bold text-lg text-gray-900">+91-7557435690</p>
                     </div>
                   </a>
 
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-xl bg-white/20 flex items-center justify-center">
-                      <MapPin size={24} />
+                    <div className="w-14 h-14 rounded-xl bg-gray-100 flex items-center justify-center">
+                      <MapPin size={24} className="text-gray-700" />
                     </div>
                     <div>
-                      <p className="text-white/70 text-sm">Location</p>
-                      <p className="font-bold text-lg">India</p>
+                      <p className="text-gray-500 text-sm">Location</p>
+                      <p className="font-bold text-lg text-gray-900">India</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-8 p-4 bg-white/10 rounded-2xl border-2 border-white/20">
+                <div className="mt-8 p-4 bg-gray-50 rounded-2xl border-2 border-gray-200">
                   <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
-                    <p className="font-bold">Available for new opportunities</p>
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                    <p className="font-bold text-gray-900">Available for new opportunities</p>
                   </div>
                 </div>
               </div>
@@ -108,7 +108,7 @@ export default function Contact() {
             <TiltCard intensity={5}>
               <form
                 onSubmit={handleSubmit}
-                className="bg-white rounded-3xl p-8 shadow-xl border-2 border-gray-100"
+                className="bg-white rounded-3xl p-8 shadow-sm border-2 border-gray-200"
               >
                 <div className="grid sm:grid-cols-2 gap-6 mb-6">
                   <div>
@@ -117,7 +117,7 @@ export default function Contact() {
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-5 py-4 rounded-2xl border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 outline-none transition-all"
+                      className="w-full px-5 py-4 rounded-2xl border-2 border-gray-200 focus:border-gray-900 focus:ring-4 focus:ring-gray-100 outline-none transition-all"
                       placeholder="John Doe"
                       required
                     />
@@ -128,7 +128,7 @@ export default function Contact() {
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-5 py-4 rounded-2xl border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 outline-none transition-all"
+                      className="w-full px-5 py-4 rounded-2xl border-2 border-gray-200 focus:border-gray-900 focus:ring-4 focus:ring-gray-100 outline-none transition-all"
                       placeholder="john@example.com"
                       required
                     />
@@ -141,7 +141,7 @@ export default function Contact() {
                     type="text"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full px-5 py-4 rounded-2xl border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 outline-none transition-all"
+                    className="w-full px-5 py-4 rounded-2xl border-2 border-gray-200 focus:border-gray-900 focus:ring-4 focus:ring-gray-100 outline-none transition-all"
                     placeholder="Project Inquiry"
                     required
                   />
@@ -153,7 +153,7 @@ export default function Contact() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     rows={6}
-                    className="w-full px-5 py-4 rounded-2xl border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-100 outline-none transition-all resize-none"
+                    className="w-full px-5 py-4 rounded-2xl border-2 border-gray-200 focus:border-gray-900 focus:ring-4 focus:ring-gray-100 outline-none transition-all resize-none"
                     placeholder="Tell me about your project..."
                     required
                   />
@@ -163,7 +163,7 @@ export default function Contact() {
                   type="submit"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-4 px-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl font-black text-lg flex items-center justify-center gap-2 hover:shadow-2xl transition-shadow"
+                  className="w-full py-4 px-6 bg-gray-900 text-white rounded-2xl font-black text-lg flex items-center justify-center gap-2 hover:bg-gray-800 transition-colors"
                 >
                   {submitted ? (
                     <>

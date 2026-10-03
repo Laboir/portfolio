@@ -62,7 +62,7 @@ export default function Experience() {
     <section
       ref={sectionRef}
       id="experience"
-      className="py-32 relative overflow-hidden bg-gray-50"
+      className="py-32 relative overflow-hidden bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -74,11 +74,11 @@ export default function Experience() {
         >
           <h2 className="text-5xl sm:text-6xl font-black text-gray-900 mb-6">
             Work{' '}
-            <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <span className="text-indigo-600">
               Experience
             </span>
           </h2>
-          <div className="w-24 h-2 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-gray-900 mx-auto rounded-full" />
           <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto">
             My professional journey so far
           </p>
@@ -87,16 +87,16 @@ export default function Experience() {
         <div className="max-w-4xl mx-auto space-y-8">
           {experiences.map((exp, index) => (
             <TiltCard key={index} intensity={5} className="exp-card">
-              <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover:border-purple-200">
+              <div className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border-2 border-gray-200 hover:border-gray-900">
                 <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                   <div>
                     <h3 className="text-2xl font-black text-gray-900 mb-2">{exp.title}</h3>
-                    <p className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    <p className="text-xl font-bold text-indigo-600">
                       {exp.company}
                     </p>
                   </div>
                   {exp.current && (
-                    <span className="px-4 py-2 text-sm font-bold bg-green-100 text-green-700 rounded-full">
+                    <span className="px-4 py-2 text-sm font-bold bg-green-100 text-green-700 rounded-full border-2 border-green-200">
                       ● Current
                     </span>
                   )}
