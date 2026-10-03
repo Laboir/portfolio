@@ -1,5 +1,11 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import TiltCard from './TiltCard';
 import { Briefcase, Calendar } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const experiences = [
   {
@@ -29,80 +35,88 @@ const experiences = [
 ];
 
 export default function Experience() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray('.exp-card').forEach((card: any, i: number) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 0,
+          x: i % 2 === 0 ? -100 : 100,
+          rotationY: i % 2 === 0 ? -20 : 20,
+          duration: 0.8,
+          ease: 'power3.out',
+        });
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="experience" className="py-20 lg:py-32 bg-white dark:bg-gray-900">
+    <section
+      ref={sectionRef}
+      id="experience"
+      className="py-32 relative overflow-hidden bg-gray-50"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-5xl sm:text-6xl font-black text-gray-900 mb-6">
             Work{' '}
-            <span className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               Experience
             </span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto rounded-full" />
-          <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            3.5+ years of professional experience in digital marketing and web development
+          <div className="w-24 h-2 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full" />
+          <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto">
+            My professional journey so far
           </p>
-        </div>
+        </motion.div>
 
-        {/* Timeline */}
-        <div className="max-w-3xl mx-auto">
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-500 to-purple-600 hidden sm:block" />
-
-            <div className="space-y-8">
-              {experiences.map((exp, index) => (
-                <div
-                  key={index}
-                  className="relative flex gap-6 group"
-                >
-                  {/* Timeline Dot */}
-                  <div className="hidden sm:flex flex-shrink-0 w-16 h-16 items-center justify-center">
-                    <div className={`w-4 h-4 rounded-full border-4 ${
-                      exp.current
-                        ? 'bg-green-500 border-green-200 dark:border-green-800'
-                        : 'bg-indigo-500 border-indigo-200 dark:border-indigo-800'
-                    }`} />
-                  </div>
-
-                  {/* Content Card */}
-                  <div className="flex-1 bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 hover:border-indigo-200 dark:hover:border-indigo-800 transition-all duration-300 hover:shadow-lg">
-                    <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
-                      <div>
-                        <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                          {exp.title}
-                        </h3>
-                        <p className="text-indigo-500 dark:text-indigo-400 font-medium">
-                          {exp.company}
-                        </p>
-                      </div>
-                      {exp.current && (
-                        <span className="px-3 py-1 text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full">
-                          Current
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="flex flex-wrap items-center gap-4 mb-3 text-sm text-gray-500 dark:text-gray-400">
-                      <span className="flex items-center gap-1">
-                        <Calendar size={14} />
-                        {exp.period}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Briefcase size={14} />
-                        {exp.type}
-                      </span>
-                    </div>
-
-                    <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-                      {exp.description}
+        <div className="max-w-4xl mx-auto space-y-8">
+          {experiences.map((exp, index) => (
+            <TiltCard key={index} intensity={5} className="exp-card">
+              <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover:border-purple-200">
+                <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
+                  <div>
+                    <h3 className="text-2xl font-black text-gray-900 mb-2">{exp.title}</h3>
+                    <p className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                      {exp.company}
                     </p>
                   </div>
+                  {exp.current && (
+                    <span className="px-4 py-2 text-sm font-bold bg-green-100 text-green-700 rounded-full">
+                      ● Current
+                    </span>
+                  )}
                 </div>
-              ))}
-            </div>
-          </div>
+
+                <div className="flex flex-wrap items-center gap-6 mb-4 text-gray-500">
+                  <span className="flex items-center gap-2">
+                    <Calendar size={18} />
+                    {exp.period}
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <Briefcase size={18} />
+                    {exp.type}
+                  </span>
+                </div>
+
+                <p className="text-lg text-gray-600 leading-relaxed">{exp.description}</p>
+              </div>
+            </TiltCard>
+          ))}
         </div>
       </div>
     </section>

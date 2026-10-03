@@ -1,164 +1,277 @@
-import React from 'react';
-import { ArrowDown, Mail, Phone, Linkedin, FileText, Sparkles } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import TiltCard from './TiltCard';
+import { Mail, Phone, Linkedin, FileText, ArrowDown } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate title letters
+      if (titleRef.current) {
+        const letters = titleRef.current.querySelectorAll('.letter');
+        gsap.from(letters, {
+          opacity: 0,
+          y: 50,
+          rotationX: -90,
+          stagger: 0.05,
+          duration: 0.8,
+          ease: 'back.out(1.7)',
+          delay: 0.3,
+        });
+      }
+
+      // Animate subtitle
+      if (subtitleRef.current) {
+        gsap.from(subtitleRef.current, {
+          opacity: 0,
+          y: 30,
+          duration: 1,
+          delay: 1,
+          ease: 'power3.out',
+        });
+      }
+
+      // Parallax effect on scroll
+      if (imageRef.current) {
+        gsap.to(imageRef.current, {
+          y: -100,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1,
+          },
+        });
+      }
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const titleText = "Hi, I'm Pankaj";
+
   return (
     <section
+      ref={containerRef}
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+      className="min-h-screen flex items-center relative overflow-hidden pt-20"
+      style={{
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      }}
     >
-      {/* Enhanced Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-950" />
-      
-      {/* Animated Background Shapes */}
+      {/* Organic blob shapes */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-200/40 dark:bg-indigo-500/20 rounded-full blur-3xl animate-float-1" />
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-200/40 dark:bg-purple-500/20 rounded-full blur-3xl animate-float-2" />
-        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-pink-200/30 dark:bg-pink-500/15 rounded-full blur-3xl animate-float-3" />
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, 90, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
+          className="absolute top-20 left-10 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            scale: [1.2, 1, 1.2],
+            rotate: [0, -90, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
+          className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-pink-400/20 rounded-full blur-3xl"
+        />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div className="text-center lg:text-left">
-            <div className="mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/50 dark:to-purple-900/50 text-indigo-600 dark:text-indigo-300 text-sm font-semibold shadow-sm">
-                <Sparkles size={16} className="animate-pulse" />
-                Welcome to my portfolio
+          {/* Left Content - Asymmetric */}
+          <div className="space-y-8">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="inline-block"
+            >
+              <span className="px-6 py-3 bg-white/10 backdrop-blur-md rounded-full text-white text-sm font-semibold border border-white/20">
+                ✨ Welcome to my world
               </span>
-            </div>
+            </motion.div>
 
             <h1
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 animate-fade-in-up leading-tight"
-              style={{ animationDelay: '0.3s' }}
+              ref={titleRef}
+              className="text-6xl sm:text-7xl lg:text-8xl font-black text-white leading-none"
+              style={{ perspective: '1000px' }}
             >
-              Hi, I'm{' '}
-              <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient">
-                Pankaj
-              </span>
+              {titleText.split('').map((char, i) => (
+                <span
+                  key={i}
+                  className="letter inline-block"
+                  style={{ display: char === ' ' ? 'inline' : 'inline-block' }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </span>
+              ))}
             </h1>
 
             <p
-              className="text-2xl sm:text-3xl text-gray-700 dark:text-gray-200 mb-4 font-semibold animate-fade-in-up"
-              style={{ animationDelay: '0.5s' }}
+              ref={subtitleRef}
+              className="text-2xl sm:text-3xl text-white/90 font-light leading-relaxed"
             >
-              Digital Marketing Manager
+              Digital Marketing Manager crafting{' '}
+              <span className="font-bold bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent">
+                unique digital experiences
+              </span>{' '}
+              with 3.5+ years of magic ✨
             </p>
 
-            <p
-              className="text-lg text-gray-600 dark:text-gray-400 mb-8 animate-fade-in-up leading-relaxed"
-              style={{ animationDelay: '0.6s' }}
-            >
-              Digital Marketing Specialist with <span className="font-semibold text-indigo-600 dark:text-indigo-400">3.5+ years</span> of experience in SEO, Meta Ads, 
-              social media, content, and lead generation. Also builds websites using Next.js, 
-              HTML, CSS, JavaScript, and PHP.
-            </p>
-
-            <div
-              className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 mb-8 animate-fade-in-up"
-              style={{ animationDelay: '0.7s' }}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              className="flex flex-wrap gap-4"
             >
               <a
                 href="#projects"
-                className="px-8 py-3.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-full font-semibold hover:shadow-xl hover:shadow-indigo-500/30 transition-all duration-300 hover:-translate-y-1"
+                className="group px-8 py-4 bg-white text-purple-600 rounded-full font-bold hover:shadow-2xl transition-all duration-300 hover:scale-105"
               >
-                View My Work
-              </a>
-              <a
-                href="#resume"
-                className="px-8 py-3.5 border-2 border-indigo-500 text-indigo-500 dark:text-indigo-400 rounded-full font-semibold hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all duration-300 hover:-translate-y-1"
-              >
-                📄 My Resume
+                See My Work
+                <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
               </a>
               <a
                 href="#contact"
-                className="px-8 py-3.5 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-full font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300 hover:-translate-y-1"
+                className="px-8 py-4 bg-white/10 backdrop-blur-md text-white rounded-full font-bold border-2 border-white/30 hover:bg-white/20 transition-all duration-300 hover:scale-105"
               >
-                Get In Touch
+                Let's Chat 💬
               </a>
-            </div>
+            </motion.div>
 
-            <div
-              className="flex items-center justify-center lg:justify-start space-x-6 animate-fade-in"
-              style={{ animationDelay: '0.9s' }}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.5 }}
+              className="flex gap-6 pt-4"
             >
               <a
                 href="mailto:pankajsengar071@gmail.com"
-                className="text-gray-600 dark:text-gray-400 hover:text-indigo-500 transition-all duration-300 hover:scale-110"
-                title="Email"
+                className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 border border-white/20"
               >
-                <Mail size={24} />
+                <Mail size={20} />
               </a>
               <a
                 href="tel:+917557435690"
-                className="text-gray-600 dark:text-gray-400 hover:text-indigo-500 transition-all duration-300 hover:scale-110"
-                title="Phone"
+                className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 border border-white/20"
               >
-                <Phone size={24} />
+                <Phone size={20} />
               </a>
               <a
                 href="https://linkedin.com/in/pankajsengar071"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-400 hover:text-indigo-500 transition-all duration-300 hover:scale-110"
-                title="LinkedIn"
+                className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 border border-white/20"
               >
-                <Linkedin size={24} />
+                <Linkedin size={20} />
               </a>
               <a
                 href="#resume"
-                className="text-gray-600 dark:text-gray-400 hover:text-indigo-500 transition-all duration-300 hover:scale-110"
-                title="Resume"
+                className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 border border-white/20"
               >
-                <FileText size={24} />
+                <FileText size={20} />
               </a>
-            </div>
+            </motion.div>
           </div>
 
-          {/* Right - Profile Image */}
-          <div className="flex justify-center lg:justify-end animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-            <div className="relative">
-              {/* Decorative rings */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 blur-2xl opacity-30 animate-pulse" />
-              <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-20 animate-spin-slow" />
-              
-              {/* Profile image container */}
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl">
-                <img
-                  src="https://image.qwenlm.ai/generated-images/16a16c3a-3da2-4a14-88d2-1eb71ffba4d0/_result.png"
-                  alt="Pankaj - Digital Marketing Manager"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Floating badges */}
-              <div className="absolute -top-4 -right-4 bg-white dark:bg-gray-800 rounded-2xl p-3 shadow-xl animate-bounce-slow">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">🚀</span>
-                  <div>
-                    <p className="text-xs font-bold text-gray-900 dark:text-white">3.5+ Years</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">Experience</p>
-                  </div>
+          {/* Right - 3D Image with Tilt */}
+          <div className="flex justify-center lg:justify-end">
+            <TiltCard intensity={20} className="relative">
+              <div
+                ref={imageRef}
+                className="relative w-80 h-80 lg:w-96 lg:h-96"
+              >
+                {/* Glowing background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-400 to-pink-500 rounded-3xl blur-2xl opacity-50 animate-pulse" />
+                
+                {/* Main image container */}
+                <div className="relative w-full h-full bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-xl rounded-3xl border-2 border-white/30 overflow-hidden shadow-2xl">
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=800&fit=crop&crop=face"
+                    alt="Pankaj"
+                    className="w-full h-full object-cover"
+                  />
+                  
+                  {/* Overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-purple-600/40 to-transparent" />
                 </div>
-              </div>
 
-              <div className="absolute -bottom-4 -left-4 bg-white dark:bg-gray-800 rounded-2xl p-3 shadow-xl animate-bounce-slow" style={{ animationDelay: '0.5s' }}>
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">💼</span>
-                  <div>
-                    <p className="text-xs font-bold text-gray-900 dark:text-white">12+ Projects</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">Completed</p>
+                {/* Floating badges */}
+                <motion.div
+                  animate={{
+                    y: [0, -10, 0],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                  className="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-2xl"
+                  style={{ transform: 'translateZ(80px)' }}
+                >
+                  <div className="text-center">
+                    <div className="text-3xl font-black text-purple-600">3.5+</div>
+                    <div className="text-xs text-gray-600 font-semibold">Years Exp</div>
                   </div>
-                </div>
+                </motion.div>
+
+                <motion.div
+                  animate={{
+                    y: [0, 10, 0],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                    delay: 1,
+                  }}
+                  className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-2xl"
+                  style={{ transform: 'translateZ(80px)' }}
+                >
+                  <div className="text-center">
+                    <div className="text-3xl font-black text-pink-600">12+</div>
+                    <div className="text-xs text-gray-600 font-semibold">Projects</div>
+                  </div>
+                </motion.div>
               </div>
-            </div>
+            </TiltCard>
           </div>
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce-slow">
-          <ArrowDown className="text-gray-400" size={24} />
-        </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <ArrowDown className="text-white/60" size={32} />
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,147 +1,183 @@
-import React, { useState } from 'react';
-import { ExternalLink, ArrowUpRight } from 'lucide-react';
-import { projects } from '../data/projects';
+import React, { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import TiltCard from './TiltCard';
+import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
 
-type Props = {
-  onProjectClick: (id: string) => void;
-};
+gsap.registerPlugin(ScrollTrigger);
 
-const categories = [
-  { key: 'all', label: 'All Projects' },
-  { key: 'marketing', label: '📣 SEO & Marketing' },
-  { key: 'webdev', label: '🌐 Web Development' },
-  { key: 'content', label: '📝 Content' },
+const projects = [
+  {
+    title: 'E-Commerce Platform',
+    description: 'A full-stack e-commerce platform with real-time inventory management, payment processing, and an admin dashboard.',
+    image: '🛒',
+    tags: ['Next.js', 'TypeScript', 'Stripe', 'PostgreSQL'],
+    color: 'from-blue-500 to-cyan-500',
+    link: '#',
+    github: '#',
+  },
+  {
+    title: 'AI Chat Application',
+    description: 'An intelligent chat application powered by GPT-4 with context awareness, file uploads, and conversation history.',
+    image: '🤖',
+    tags: ['React', 'OpenAI', 'Node.js', 'WebSocket'],
+    color: 'from-purple-500 to-pink-500',
+    link: '#',
+    github: '#',
+  },
+  {
+    title: 'Project Management Tool',
+    description: 'A collaborative project management tool with Kanban boards, time tracking, and team analytics.',
+    image: '📋',
+    tags: ['Vue.js', 'GraphQL', 'MongoDB', 'Docker'],
+    color: 'from-green-500 to-emerald-500',
+    link: '#',
+    github: '#',
+  },
+  {
+    title: 'Social Media Dashboard',
+    description: 'A comprehensive analytics dashboard for social media managers with real-time data visualization.',
+    image: '📊',
+    tags: ['React', 'D3.js', 'Python', 'Redis'],
+    color: 'from-orange-500 to-red-500',
+    link: '#',
+    github: '#',
+  },
+  {
+    title: 'Fitness Tracking App',
+    description: 'A mobile-first fitness tracking application with workout plans, progress tracking, and social features.',
+    image: '💪',
+    tags: ['React Native', 'Firebase', 'TypeScript', 'Tailwind'],
+    color: 'from-indigo-500 to-blue-500',
+    link: '#',
+    github: '#',
+  },
+  {
+    title: 'Weather Visualization',
+    description: 'An interactive weather application with beautiful data visualizations and 7-day forecasts.',
+    image: '🌤️',
+    tags: ['Next.js', 'Chart.js', 'Weather API', 'Tailwind'],
+    color: 'from-teal-500 to-cyan-500',
+    link: '#',
+    github: '#',
+  },
 ];
 
-export default function Projects({ onProjectClick }: Props) {
-  const [activeCategory, setActiveCategory] = useState('all');
+export default function Projects() {
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-  const filteredProjects = activeCategory === 'all'
-    ? projects
-    : projects.filter((p) => p.category === activeCategory);
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate project cards on scroll
+      gsap.utils.toArray('.project-card').forEach((card: any, i: number) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 0,
+          y: 100,
+          rotationX: 30,
+          duration: 0.8,
+          delay: i * 0.1,
+          ease: 'power3.out',
+        });
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="projects" className="py-20 lg:py-32 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            My{' '}
-            <span className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
+    <section
+      ref={sectionRef}
+      id="projects"
+      className="py-32 relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(to bottom, #ffffff 0%, #f1f5f9 100%)',
+      }}
+    >
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-5xl sm:text-6xl font-black text-gray-900 mb-6">
+            Featured{' '}
+            <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               Projects
             </span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto rounded-full" />
-          <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Real projects I've worked on — click any project to see the full case study with sheets, reports & more
+          <div className="w-24 h-2 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full" />
+          <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto">
+            Here are some of my recent projects that showcase my skills and experience
           </p>
-        </div>
+        </motion.div>
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((cat) => (
-            <button
-              key={cat.key}
-              onClick={() => setActiveCategory(cat.key)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeCategory === cat.key
-                  ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg shadow-indigo-500/20'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
-            <button
-              key={project.id}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                onProjectClick(project.id);
-              }}
-              className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 cursor-pointer relative text-left w-full"
-            >
-              {/* Project Image Area */}
-              <div className={`h-48 bg-gradient-to-br ${project.color} flex items-center justify-center relative overflow-hidden`}>
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-30 transition-all duration-500"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                
-                {/* Hover Overlay with Project Details */}
-                <div className="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl">{project.emoji}</span>
-                      <span className="text-white font-bold text-lg">{project.title}</span>
-                    </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 space-y-1">
-                      <p className="text-white/90 text-xs">
-                        <span className="font-semibold">Role:</span> {project.role}
-                      </p>
-                      <p className="text-white/90 text-xs">
-                        <span className="font-semibold">Type:</span> {project.projectType}
-                      </p>
-                      {project.technologies && (
-                        <p className="text-white/90 text-xs">
-                          <span className="font-semibold">Tech:</span> {project.technologies.slice(0, 3).join(', ')}
-                        </p>
-                      )}
-                    </div>
-                    <div className="flex items-center justify-between pt-2">
-                      <span className="text-white text-sm font-medium">View Full Case Study →</span>
-                      <ArrowUpRight className="text-white" size={20} />
-                    </div>
+          {projects.map((project, index) => (
+            <TiltCard key={project.title} intensity={12} className="project-card">
+              <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
+                {/* Project Image/Icon Area */}
+                <div
+                  className={`h-56 bg-gradient-to-br ${project.color} flex items-center justify-center relative overflow-hidden`}
+                >
+                  <span className="text-7xl transform group-hover:scale-125 transition-transform duration-500">
+                    {project.image}
+                  </span>
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                    <a
+                      href={project.link}
+                      className="p-4 bg-white rounded-full text-gray-900 hover:scale-110 transition-transform shadow-xl"
+                    >
+                      <ExternalLink size={24} />
+                    </a>
+                    <a
+                      href={project.github}
+                      className="p-4 bg-white rounded-full text-gray-900 hover:scale-110 transition-transform shadow-xl"
+                    >
+                      <Github size={24} />
+                    </a>
                   </div>
                 </div>
 
-                {/* Status Badge - Always Visible */}
-                <div className="absolute top-3 right-3">
-                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                    project.status === 'Live' 
-                      ? 'bg-green-500/90 text-white' 
-                      : 'bg-yellow-500/90 text-white'
-                  }`}>
-                    {project.status}
-                  </span>
+                {/* Project Info */}
+                <div className="p-8">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-2xl font-black text-gray-900 group-hover:text-purple-600 transition-colors">
+                      {project.title}
+                    </h3>
+                    <ArrowUpRight
+                      className="text-gray-400 group-hover:text-purple-600 transition-colors transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                      size={24}
+                    />
+                  </div>
+                  <p className="text-gray-600 mb-6 leading-relaxed">{project.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-4 py-2 text-sm font-semibold bg-gray-100 text-gray-700 rounded-full hover:bg-purple-100 hover:text-purple-700 transition-colors cursor-default"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-
-              {/* Project Info */}
-              <div className="p-6">
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 leading-relaxed line-clamp-2">
-                  {project.shortDescription}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.slice(0, 4).map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  {project.tags.length > 4 && (
-                    <span className="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded-full">
-                      +{project.tags.length - 4}
-                    </span>
-                  )}
-                </div>
-                <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-700">
-                  <span className="text-sm font-medium text-indigo-500 group-hover:text-indigo-600 transition-colors">
-                    View Case Study →
-                  </span>
-                  <ArrowUpRight className="text-gray-400 group-hover:text-indigo-500 transition-colors" size={18} />
-                </div>
-              </div>
-            </button>
+            </TiltCard>
           ))}
         </div>
       </div>
