@@ -8,41 +8,57 @@ gsap.registerPlugin(ScrollTrigger);
 
 const skillCategories = [
   {
-    title: 'Frontend',
+    title: 'Digital Marketing',
     skills: [
-      { name: 'React', level: 95 },
-      { name: 'TypeScript', level: 90 },
-      { name: 'Next.js', level: 88 },
+      { name: 'SEO', level: 95 },
+      { name: 'Content Writing', level: 88 },
+      { name: 'Meta Ads', level: 90 },
+    ],
+  },
+  {
+    title: 'Technology',
+    skills: [
+      { name: 'HTML', level: 95 },
+      { name: 'CSS', level: 92 },
+      { name: 'JavaScript', level: 90 },
+      { name: 'SASS', level: 85 },
+      { name: 'React', level: 88 },
+      { name: 'Next.js', level: 85 },
       { name: 'Tailwind CSS', level: 92 },
-      { name: 'Vue.js', level: 75 },
+      { name: 'TypeScript', level: 78 },
     ],
   },
   {
     title: 'Backend',
     skills: [
-      { name: 'Node.js', level: 90 },
-      { name: 'Python', level: 85 },
-      { name: 'PostgreSQL', level: 82 },
-      { name: 'GraphQL', level: 78 },
-      { name: 'Docker', level: 80 },
+      { name: 'Node.js', level: 85 },
+      { name: 'Express', level: 82 },
+      { name: 'JWT', level: 78 },
     ],
   },
   {
-    title: 'Tools & Others',
+    title: 'Tools',
     skills: [
       { name: 'Git', level: 92 },
-      { name: 'AWS', level: 78 },
-      { name: 'Figma', level: 70 },
-      { name: 'CI/CD', level: 82 },
-      { name: 'Testing', level: 85 },
+      { name: 'GitHub', level: 90 },
+      { name: 'Google Sheet', level: 88 },
+      { name: 'Excel', level: 85 },
+      { name: 'Google Doc', level: 88 },
+    ],
+  },
+  {
+    title: 'Database',
+    skills: [
+      { name: 'MySQL', level: 80 },
+      { name: 'MongoDB', level: 78 },
     ],
   },
 ];
 
 const techLogos = [
-  'React', 'TypeScript', 'Node.js', 'Python', 'Next.js',
-  'Tailwind', 'PostgreSQL', 'Docker', 'AWS', 'Git',
-  'GraphQL', 'Redis', 'MongoDB', 'Figma', 'Vercel'
+  'SEO', 'Meta Ads', 'React', 'Next.js', 'TypeScript',
+  'Tailwind', 'Node.js', 'Express', 'MongoDB', 'MySQL',
+  'Git', 'GitHub', 'SASS', 'JWT', 'Excel'
 ];
 
 export default function Skills() {
@@ -130,21 +146,21 @@ export default function Skills() {
         </motion.div>
 
         {/* Skill Bars */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category) => (
             <TiltCard key={category.title} intensity={10} className="skill-card">
               <div className="bg-white rounded-3xl p-8 border-2 border-gray-200 shadow-sm h-full">
-                <h3 className="text-3xl font-black mb-8 text-gray-900">
+                <h3 className="text-2xl font-black mb-8 text-gray-900">
                   {category.title}
                 </h3>
-                <div className="space-y-6">
+                <div className="space-y-5">
                   {category.skills.map((skill) => (
                     <div key={skill.name}>
                       <div className="flex justify-between mb-2">
-                        <span className="text-lg font-semibold text-gray-700">{skill.name}</span>
-                        <span className="text-lg font-bold text-gray-500">{skill.level}%</span>
+                        <span className="text-base font-semibold text-gray-700">{skill.name}</span>
+                        <span className="text-sm font-bold text-gray-500">{skill.level}%</span>
                       </div>
-                      <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level}%` }}
