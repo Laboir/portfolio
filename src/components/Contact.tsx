@@ -104,7 +104,7 @@ export default function Contact() {
           <div className="lg:col-span-3">
             <form
               onSubmit={handleSubmit}
-              className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-sm border border-gray-100 dark:border-gray-700"
+              className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 rounded-2xl p-8 shadow-xl border border-gray-100 dark:border-gray-700"
             >
               <div className="grid sm:grid-cols-2 gap-6 mb-6">
                 <div>

@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Stats from './components/Stats';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import ProjectDetail from './components/ProjectDetail';
 import Resume from './components/Resume';
+import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { projects } from './data/projects';
@@ -43,11 +45,13 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <Stats />
         <About />
         <Skills />
         <Experience />
         <Resume />
         <Projects onProjectClick={handleProjectClick} />
+        <Testimonials />
         <Contact />
       </main>
       <Footer />

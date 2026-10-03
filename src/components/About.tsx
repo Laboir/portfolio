@@ -73,11 +73,11 @@ export default function About() {
 
           {/* Right - Content */}
           <div className="animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Digital Marketing Specialist & Web Developer
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-              I'm a Digital Marketing Specialist with 3.5+ years of experience in SEO, Meta Ads, 
+            <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed text-lg">
+              I'm a Digital Marketing Specialist with <span className="font-semibold text-indigo-600 dark:text-indigo-400">3.5+ years</span> of experience in SEO, Meta Ads, 
               social media, content, and lead generation. I also build websites using Next.js, 
               HTML, CSS, JavaScript, and PHP.
             </p>
@@ -90,14 +90,16 @@ export default function About() {
               {highlights.map((item, index) => (
                 <div
                   key={item.title}
-                  className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:border-indigo-200 dark:hover:border-indigo-800 transition-colors hover:-translate-y-1 transform duration-300"
+                  className="group p-5 rounded-2xl bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 border border-gray-100 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
                   style={{ animationDelay: `${0.6 + index * 0.1}s` }}
                 >
-                  <item.icon className="text-indigo-500 mb-2" size={24} />
-                  <h4 className="font-semibold text-gray-900 dark:text-white text-sm">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <item.icon className="text-white" size={24} />
+                  </div>
+                  <h4 className="font-bold text-gray-900 dark:text-white mb-1">
                     {item.title}
                   </h4>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
                     {item.description}
                   </p>
                 </div>

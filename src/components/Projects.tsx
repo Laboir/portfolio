@@ -63,7 +63,7 @@ export default function Projects({ onProjectClick }: Props) {
                 e.stopPropagation();
                 onProjectClick(project.id);
               }}
-              className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer relative text-left w-full"
+              className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all duration-300 hover:-translate-y-3 cursor-pointer relative text-left w-full"
             >
               {/* Project Image Area */}
               <div className={`h-48 bg-gradient-to-br ${project.color} flex items-center justify-center relative overflow-hidden`}>

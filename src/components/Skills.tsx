@@ -79,25 +79,30 @@ export default function Skills() {
           {skillCategories.map((category) => (
             <div
               key={category.title}
-              className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300"
+              className="group bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
             >
-              <h3 className={`text-xl font-bold mb-6 bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
-                {category.title}
-              </h3>
+              <div className="flex items-center gap-3 mb-6">
+                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center`}>
+                  <div className="w-2 h-2 bg-white rounded-full" />
+                </div>
+                <h3 className={`text-xl font-bold bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
+                  {category.title}
+                </h3>
+              </div>
               <div className="space-y-4">
                 {category.skills.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <div key={skill.name} className="group/skill">
+                    <div className="flex justify-between mb-2">
+                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover/skill:text-indigo-600 dark:group-hover/skill:text-indigo-400 transition-colors">
                         {skill.name}
                       </span>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                      <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">
                         {skill.level}%
                       </span>
                     </div>
-                    <div className="w-full h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div className="w-full h-2.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
                       <div
-                        className={`h-full bg-gradient-to-r ${category.color} rounded-full transition-all duration-1000`}
+                        className={`h-full bg-gradient-to-r ${category.color} rounded-full transition-all duration-1000 group-hover/skill:shadow-lg`}
                         style={{ width: `${skill.level}%` }}
                       />
                     </div>
