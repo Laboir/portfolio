@@ -91,35 +91,35 @@ export default function About() {
               <div className="relative">
                 {/* Main image container */}
                 <div className="relative bg-white rounded-3xl p-8 shadow-xl border-2 border-gray-200">
-                  <div className="aspect-square rounded-2xl bg-gray-900 flex items-center justify-center overflow-hidden">
+                  <div className="aspect-square rounded-2xl bg-gray-100 flex items-center justify-center overflow-hidden">
                     <div className="text-center p-8">
                       <div className="text-9xl mb-6">👨‍💻</div>
                       <div className="space-y-3">
                         <div className="flex items-center justify-center gap-2">
-                          <div className="w-3 h-3 rounded-full bg-red-400" />
-                          <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                          <div className="w-3 h-3 rounded-full bg-green-400" />
+                          <div className="w-3 h-3 rounded-full bg-red-500" />
+                          <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                          <div className="w-3 h-3 rounded-full bg-green-500" />
                         </div>
-                        <div className="font-mono text-sm text-gray-400 mt-6 space-y-2 text-left">
+                        <div className="font-mono text-sm text-gray-600 mt-6 space-y-2 text-left">
                           <p>
-                            <span className="text-indigo-400">const</span>{' '}
-                            <span className="text-blue-400">developer</span> = {'{'}
+                            <span className="text-indigo-600 font-semibold">const</span>{' '}
+                            <span className="text-blue-600 font-semibold">developer</span> = {'{'}
                           </p>
                           <p className="pl-4">
-                            <span className="text-green-400">name</span>:{' '}
-                            <span className="text-orange-400">"Pankaj"</span>,
+                            <span className="text-green-600 font-semibold">name</span>:{' '}
+                            <span className="text-orange-600">"Pankaj"</span>,
                           </p>
                           <p className="pl-4">
-                            <span className="text-green-400">role</span>:{' '}
-                            <span className="text-orange-400">"Digital Marketing Manager"</span>,
+                            <span className="text-green-600 font-semibold">role</span>:{' '}
+                            <span className="text-orange-600">"Digital Marketing Manager"</span>,
                           </p>
                           <p className="pl-4">
-                            <span className="text-green-400">experience</span>:{' '}
-                            <span className="text-indigo-400">3.5</span>,
+                            <span className="text-green-600 font-semibold">experience</span>:{' '}
+                            <span className="text-indigo-600">3.5</span>,
                           </p>
                           <p className="pl-4">
-                            <span className="text-green-400">passion</span>:{' '}
-                            <span className="text-orange-400">"Building things"</span>
+                            <span className="text-green-600 font-semibold">passion</span>:{' '}
+                            <span className="text-orange-600">"Building things"</span>
                           </p>
                           <p>{'}'}</p>
                         </div>
