@@ -48,7 +48,7 @@ export default function Contact() {
         <div className="grid lg:grid-cols-5 gap-8">
           {/* Contact Info */}
           <div className="lg:col-span-2 space-y-6">
-            <TiltCard intensity={8}>
+            <TiltCard intensity={4}>
               <div className="bg-white rounded-3xl p-8 shadow-sm border-2 border-gray-200">
                 <h3 className="text-3xl font-black mb-6 text-gray-900">Get in touch</h3>
                 <p className="text-gray-600 leading-relaxed mb-8 text-lg">
@@ -105,7 +105,7 @@ export default function Contact() {
 
           {/* Contact Form */}
           <div className="lg:col-span-3">
-            <TiltCard intensity={5}>
+            <TiltCard intensity={3}>
               <form
                 onSubmit={handleSubmit}
                 className="bg-white rounded-3xl p-8 shadow-sm border-2 border-gray-200"
@@ -163,7 +163,7 @@ export default function Contact() {
                   type="submit"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-4 px-6 bg-gray-900 text-white rounded-2xl font-black text-lg flex items-center justify-center gap-2 hover:bg-gray-800 transition-colors"
+                  className="w-full py-4 px-6 bg-gray-900 text-white rounded-2xl font-black text-lg flex items-center justify-center gap-2 hover:bg-gray-800 transition-colors cursor-pointer"
                 >
                   {submitted ? (
                     <>

@@ -28,7 +28,7 @@ export default function Resume() {
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Education */}
-          <TiltCard intensity={8}>
+          <TiltCard intensity={4}>
             <div className="bg-white rounded-3xl p-8 border-2 border-gray-200 h-full shadow-sm">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center">
@@ -52,7 +52,7 @@ export default function Resume() {
           </TiltCard>
 
           {/* Key Highlights */}
-          <TiltCard intensity={8}>
+          <TiltCard intensity={4}>
             <div className="bg-white rounded-3xl p-8 border-2 border-gray-200 h-full shadow-sm">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center">
@@ -78,7 +78,7 @@ export default function Resume() {
           </TiltCard>
 
           {/* Download CV */}
-          <TiltCard intensity={8}>
+          <TiltCard intensity={4}>
             <div className="bg-gray-900 rounded-3xl p-8 text-white h-full flex flex-col justify-between shadow-xl">
               <div>
                 <div className="flex items-center gap-3 mb-6">

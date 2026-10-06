@@ -148,7 +148,7 @@ export default function Skills() {
         {/* Skill Bars */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category) => (
-            <TiltCard key={category.title} intensity={10} className="skill-card">
+            <TiltCard key={category.title} intensity={5} className="skill-card">
               <div className="bg-white rounded-3xl p-8 border-2 border-gray-200 shadow-sm h-full">
                 <h3 className="text-2xl font-black mb-8 text-gray-900">
                   {category.title}

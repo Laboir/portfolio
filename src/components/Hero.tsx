@@ -190,7 +190,7 @@ export default function Hero() {
 
           {/* Right - 3D Image with Tilt */}
           <div className="flex justify-center lg:justify-end">
-            <TiltCard intensity={20} className="relative">
+            <TiltCard intensity={8} className="relative">
               <div
                 ref={imageRef}
                 className="relative w-80 h-80 lg:w-96 lg:h-96"
