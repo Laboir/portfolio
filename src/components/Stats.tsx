@@ -4,7 +4,7 @@ import { TrendingUp, Users, Award, Target } from 'lucide-react';
 const stats = [
   {
     icon: TrendingUp,
-    value: '300%',
+    value: '3x',
     label: 'Traffic Growth',
     color: 'from-blue-500 to-cyan-500',
   },

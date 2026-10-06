@@ -130,7 +130,7 @@ export default function About() {
                   {/* Floating stats */}
                   <div className="absolute -top-6 -right-6 bg-white rounded-2xl p-4 shadow-xl border-2 border-gray-100">
                     <div className="text-center">
-                      <div className="text-2xl font-black text-gray-900">300%</div>
+                      <div className="text-2xl font-black text-gray-900">3x</div>
                       <div className="text-xs text-gray-600 font-semibold">Traffic Growth</div>
                     </div>
                   </div>

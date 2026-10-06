@@ -45,7 +45,7 @@ export default function Resume() {
                 <div className="p-4 bg-gray-50 rounded-2xl border-2 border-gray-100">
                   <p className="font-bold text-gray-900">🎓 Bachelor of Computer Science (BCA)</p>
                   <p className="text-indigo-600 font-semibold mt-1">Kalinga University</p>
-                  <p className="text-sm text-gray-500 mt-1">2025</p>
+                  <p className="text-sm text-gray-500 mt-1">2024</p>
                 </div>
               </div>
             </div>
@@ -64,7 +64,7 @@ export default function Resume() {
                 {[
                   { label: 'Experience', value: '3.5+ Years' },
                   { label: 'Projects Completed', value: '12+' },
-                  { label: 'Traffic Growth', value: 'Up to 300%' },
+                  { label: 'Traffic Growth', value: '3x Growth' },
                   { label: 'CTR Achieved', value: 'Up to 3.1%' },
                   { label: 'CPC Reduction', value: 'Up to 22%' },
                 ].map((item) => (
