@@ -1,10 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Timeline from './Timeline';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const experiences = [
   {
@@ -31,29 +27,8 @@ const experiences = [
 ];
 
 export default function Experience() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.timeline-header', {
-        scrollTrigger: {
-          trigger: '.timeline-header',
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
-        },
-        opacity: 0,
-        y: 50,
-        duration: 0.8,
-        ease: 'power3.out',
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
       id="experience"
       className="py-32 relative overflow-hidden bg-white"
     >
@@ -63,7 +38,7 @@ export default function Experience() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20 timeline-header"
+          className="text-center mb-20"
         >
           <h2 className="text-5xl sm:text-6xl font-black text-gray-900 mb-6">
             Work{' '}
