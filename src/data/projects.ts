@@ -29,7 +29,7 @@ export const projects: Project[] = [
     tags: ['SEO', 'Google Analytics', 'Social Media', 'WordPress', 'Web Development', 'Content Writing'],
     color: 'from-blue-500 to-cyan-500',
     category: 'marketing',
-    image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=400&fit=crop',
+    image: 'https://image.qwenlm.ai/generated-images/6784a362-f0be-46f5-a968-7b807f849f1e/_result.png',
     liveUrl: 'https://jaiambayetchingprocess.in/',
     role: 'Digital Marketing Manager',
     projectType: 'SEO',
