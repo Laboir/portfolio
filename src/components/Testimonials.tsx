@@ -1,83 +1,93 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    name: 'Rajesh Kumar',
-    role: 'CEO, Jai Ambay Etching Process',
-    content: 'Pankaj transformed our online presence completely. Our organic traffic increased by 300% in just 6 months. His technical SEO skills combined with marketing expertise are unmatched.',
+    name: 'A4 Resort',
+    role: 'Hospitality & Tourism',
+    content: 'Pankaj ne hamare resort ke liye ek professional website banayi jo booking aur customer engagement ko significantly improve ki. Uski SEO skills ne hamari online visibility ko next level pe le gaya.',
     rating: 5,
+    initials: 'A4',
+    color: 'from-blue-500 to-cyan-500',
   },
   {
-    name: 'Priya Sharma',
-    role: 'Marketing Head, Hommy Pvt. Ltd',
-    content: 'Working with Pankaj was a game-changer for our brand. His Meta Ads campaigns delivered exceptional results with 55% increase in website traffic. Highly recommended!',
+    name: 'Resort Tent Creation',
+    role: 'Luxury Glamping Solutions',
+    content: 'Pankaj ki technical expertise aur marketing knowledge ka combination outstanding hai. Usne hamare liye modern, responsive website develop ki aur SEO strategy implement ki jo results de rahi hai.',
     rating: 5,
+    initials: 'RT',
+    color: 'from-green-500 to-emerald-500',
   },
   {
-    name: 'Amit Patel',
-    role: 'Founder, Noblekode',
-    content: 'Pankaj not only built our website but also optimized it for search engines. His dual expertise in development and SEO helped us achieve top rankings quickly.',
+    name: 'Jai Ambay Etching Process',
+    role: 'Industrial Manufacturing',
+    content: 'Hamare industrial business ke liye Pankaj ne complete digital presence create ki. Website development se lekar SEO tak, sab kuch professionally handle kiya. Traffic aur leads dono me significant growth dekhi.',
     rating: 5,
+    initials: 'JA',
+    color: 'from-orange-500 to-red-500',
   },
 ];
 
 export default function Testimonials() {
   return (
-    <section className="py-20 lg:py-32 bg-gray-50 dark:bg-gray-800">
+    <section id="testimonials" className="py-32 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            What Clients{' '}
-            <span className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
-              Say
-            </span>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-5xl sm:text-6xl font-black text-gray-900 mb-6">
+            Client{' '}
+            <span className="text-indigo-600">Testimonials</span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto rounded-full" />
-          <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Trusted by businesses to deliver exceptional digital marketing results
+          <div className="w-24 h-1 bg-gray-900 mx-auto rounded-full" />
+          <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto">
+            What my clients say about working with me
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <div
+            <motion.div
               key={testimonial.name}
-              className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 relative"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="bg-gray-50 rounded-3xl p-8 border-2 border-gray-200 hover:border-indigo-600 transition-all duration-300 hover:shadow-xl"
             >
-              {/* Quote icon */}
-              <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
-                <Quote className="text-white" size={20} />
-              </div>
-
-              {/* Rating stars */}
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <span key={i} className="text-yellow-400 text-xl">★</span>
-                ))}
+              {/* Quote Icon */}
+              <div className="mb-6">
+                <Quote className="text-indigo-600" size={40} />
               </div>
 
               {/* Content */}
-              <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed italic">
+              <p className="text-gray-700 text-lg leading-relaxed mb-8">
                 "{testimonial.content}"
               </p>
 
+              {/* Rating */}
+              <div className="flex gap-1 mb-6">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <span key={i} className="text-yellow-400 text-2xl">★</span>
+                ))}
+              </div>
+
               {/* Author */}
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
-                  {testimonial.name.charAt(0)}
+                <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${testimonial.color} flex items-center justify-center text-white font-black text-lg`}>
+                  {testimonial.initials}
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 dark:text-white">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    {testimonial.role}
-                  </p>
+                  <h4 className="font-bold text-gray-900 text-lg">{testimonial.name}</h4>
+                  <p className="text-gray-600 text-sm">{testimonial.role}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
