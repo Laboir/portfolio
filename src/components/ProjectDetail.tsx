@@ -18,7 +18,7 @@ export default function ProjectDetail({ project, onBack }: Props) {
           onClick={onBack}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-3 text-gray-600 hover:text-purple-600 transition-colors mb-8 group font-semibold"
+          className="flex items-center gap-3 text-gray-600 hover:text-indigo-600 transition-colors mb-8 group font-semibold cursor-pointer"
         >
           <ArrowLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
           <span>Back to Projects</span>
@@ -30,7 +30,7 @@ export default function ProjectDetail({ project, onBack }: Props) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <TiltCard intensity={8}>
+          <TiltCard intensity={4}>
             <div className={`relative rounded-3xl overflow-hidden mb-12 bg-gradient-to-br ${project.color} p-12 shadow-2xl`}>
               <div className="absolute inset-0 bg-black/20" />
               <div className="relative z-10">
@@ -57,7 +57,7 @@ export default function ProjectDetail({ project, onBack }: Props) {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 mt-8 px-8 py-4 bg-white text-gray-900 rounded-2xl font-bold hover:shadow-2xl transition-all hover:scale-105 text-lg"
+                    className="inline-flex items-center gap-3 mt-8 px-8 py-4 bg-white text-gray-900 rounded-2xl font-bold hover:shadow-2xl transition-all hover:scale-105 text-lg cursor-pointer"
                   >
                     <ExternalLink size={22} />
                     Visit Live Website
@@ -76,7 +76,7 @@ export default function ProjectDetail({ project, onBack }: Props) {
             transition={{ delay: 0.1 }}
             className="bg-white rounded-2xl p-6 border-2 border-gray-100 shadow-lg"
           >
-            <div className="flex items-center gap-3 text-purple-600 mb-3">
+            <div className="flex items-center gap-3 text-indigo-600 mb-3">
               <Briefcase size={20} />
               <span className="text-xs font-bold uppercase tracking-wide">My Role</span>
             </div>
@@ -89,7 +89,7 @@ export default function ProjectDetail({ project, onBack }: Props) {
             transition={{ delay: 0.2 }}
             className="bg-white rounded-2xl p-6 border-2 border-gray-100 shadow-lg"
           >
-            <div className="flex items-center gap-3 text-purple-600 mb-3">
+            <div className="flex items-center gap-3 text-indigo-600 mb-3">
               <Tag size={20} />
               <span className="text-xs font-bold uppercase tracking-wide">Project Type</span>
             </div>
@@ -102,7 +102,7 @@ export default function ProjectDetail({ project, onBack }: Props) {
             transition={{ delay: 0.3 }}
             className="bg-white rounded-2xl p-6 border-2 border-gray-100 shadow-lg"
           >
-            <div className="flex items-center gap-3 text-purple-600 mb-3">
+            <div className="flex items-center gap-3 text-indigo-600 mb-3">
               <Activity size={20} />
               <span className="text-xs font-bold uppercase tracking-wide">Status</span>
             </div>
@@ -116,7 +116,7 @@ export default function ProjectDetail({ project, onBack }: Props) {
               transition={{ delay: 0.4 }}
               className="bg-white rounded-2xl p-6 border-2 border-gray-100 shadow-lg"
             >
-              <div className="flex items-center gap-3 text-purple-600 mb-3">
+              <div className="flex items-center gap-3 text-indigo-600 mb-3">
                 <Code size={20} />
                 <span className="text-xs font-bold uppercase tracking-wide">Tech Stack</span>
               </div>
@@ -133,7 +133,7 @@ export default function ProjectDetail({ project, onBack }: Props) {
           className="mb-16"
         >
           <h2 className="text-4xl font-black text-gray-900 mb-6 flex items-center gap-4">
-            <span className="w-12 h-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full" />
+            <span className="w-12 h-2 bg-indigo-600 rounded-full" />
             Overview
           </h2>
           <p className="text-xl text-gray-600 leading-relaxed">
@@ -149,7 +149,7 @@ export default function ProjectDetail({ project, onBack }: Props) {
           className="mb-16"
         >
           <h2 className="text-4xl font-black text-gray-900 mb-8 flex items-center gap-4">
-            <span className="w-12 h-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full" />
+            <span className="w-12 h-2 bg-indigo-600 rounded-full" />
             What I Did
           </h2>
           <div className="space-y-4">
@@ -162,7 +162,7 @@ export default function ProjectDetail({ project, onBack }: Props) {
                 transition={{ delay: index * 0.1 }}
                 className="flex gap-4 p-6 bg-white rounded-2xl border-2 border-gray-100 shadow-lg hover:shadow-xl transition-shadow"
               >
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white font-black text-sm">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-black text-sm">
                   {index + 1}
                 </div>
                 <p className="text-lg text-gray-700 leading-relaxed">{item}</p>
@@ -179,7 +179,7 @@ export default function ProjectDetail({ project, onBack }: Props) {
           className="mb-16"
         >
           <h2 className="text-4xl font-black text-gray-900 mb-8 flex items-center gap-4">
-            <span className="w-12 h-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full" />
+            <span className="w-12 h-2 bg-indigo-600 rounded-full" />
             What It Shows
           </h2>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -190,9 +190,9 @@ export default function ProjectDetail({ project, onBack }: Props) {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="flex gap-4 p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl border-2 border-purple-100"
+                className="flex gap-4 p-6 bg-indigo-50 rounded-2xl border-2 border-indigo-100"
               >
-                <CheckCircle className="text-purple-600 flex-shrink-0 mt-1" size={24} />
+                <CheckCircle className="text-indigo-600 flex-shrink-0 mt-1" size={24} />
                 <p className="text-lg text-gray-700 font-semibold">{item}</p>
               </motion.div>
             ))}
@@ -208,7 +208,7 @@ export default function ProjectDetail({ project, onBack }: Props) {
             className="mb-16"
           >
             <h2 className="text-4xl font-black text-gray-900 mb-8 flex items-center gap-4">
-              <span className="w-12 h-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full" />
+              <span className="w-12 h-2 bg-indigo-600 rounded-full" />
               Documents & Sheets
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
@@ -218,7 +218,7 @@ export default function ProjectDetail({ project, onBack }: Props) {
                   href={sheet.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-6 bg-white rounded-2xl border-2 border-gray-100 hover:border-green-300 hover:shadow-xl transition-all group"
+                  className="flex items-center gap-4 p-6 bg-white rounded-2xl border-2 border-gray-100 hover:border-green-300 hover:shadow-xl transition-all group cursor-pointer"
                 >
                   <div className="w-14 h-14 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                     <FileSpreadsheet className="text-green-600" size={28} />
@@ -237,7 +237,7 @@ export default function ProjectDetail({ project, onBack }: Props) {
                   href={report.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-6 bg-white rounded-2xl border-2 border-gray-100 hover:border-blue-300 hover:shadow-xl transition-all group"
+                  className="flex items-center gap-4 p-6 bg-white rounded-2xl border-2 border-gray-100 hover:border-blue-300 hover:shadow-xl transition-all group cursor-pointer"
                 >
                   <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                     <FileText className="text-blue-600" size={28} />
@@ -262,14 +262,14 @@ export default function ProjectDetail({ project, onBack }: Props) {
           className="mb-16"
         >
           <h2 className="text-4xl font-black text-gray-900 mb-6 flex items-center gap-4">
-            <span className="w-12 h-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full" />
+            <span className="w-12 h-2 bg-indigo-600 rounded-full" />
             Skills Used
           </h2>
           <div className="flex flex-wrap gap-3">
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-6 py-3 bg-white rounded-full text-base font-bold text-gray-700 border-2 border-gray-200 hover:border-purple-300 hover:text-purple-600 transition-colors"
+                className="px-6 py-3 bg-white rounded-full text-base font-bold text-gray-700 border-2 border-gray-200 hover:border-indigo-300 hover:text-indigo-600 transition-colors"
               >
                 {tag}
               </span>
@@ -293,7 +293,7 @@ export default function ProjectDetail({ project, onBack }: Props) {
               e.preventDefault();
               onBack();
             }}
-            className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl font-black text-lg hover:shadow-2xl transition-all hover:scale-105"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-gray-900 text-white rounded-2xl font-black text-lg hover:bg-gray-800 hover:shadow-2xl transition-all hover:scale-105 cursor-pointer"
           >
             Let's Connect
           </a>

@@ -28,7 +28,7 @@ export default function Resume() {
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Education */}
-          <TiltCard intensity={8}>
+          <TiltCard intensity={4}>
             <div className="bg-white rounded-3xl p-8 border-2 border-gray-200 h-full shadow-sm">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center">
@@ -45,14 +45,14 @@ export default function Resume() {
                 <div className="p-4 bg-gray-50 rounded-2xl border-2 border-gray-100">
                   <p className="font-bold text-gray-900">🎓 Bachelor of Computer Science (BCA)</p>
                   <p className="text-indigo-600 font-semibold mt-1">Kalinga University</p>
-                  <p className="text-sm text-gray-500 mt-1">2025</p>
+                  <p className="text-sm text-gray-500 mt-1">2024</p>
                 </div>
               </div>
             </div>
           </TiltCard>
 
           {/* Key Highlights */}
-          <TiltCard intensity={8}>
+          <TiltCard intensity={4}>
             <div className="bg-white rounded-3xl p-8 border-2 border-gray-200 h-full shadow-sm">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center">
@@ -64,7 +64,7 @@ export default function Resume() {
                 {[
                   { label: 'Experience', value: '3.5+ Years' },
                   { label: 'Projects Completed', value: '12+' },
-                  { label: 'Traffic Growth', value: 'Up to 300%' },
+                  { label: 'Traffic Growth', value: '3x Growth' },
                   { label: 'CTR Achieved', value: 'Up to 3.1%' },
                   { label: 'CPC Reduction', value: 'Up to 22%' },
                 ].map((item) => (
@@ -78,7 +78,7 @@ export default function Resume() {
           </TiltCard>
 
           {/* Download CV */}
-          <TiltCard intensity={8}>
+          <TiltCard intensity={4}>
             <div className="bg-gray-900 rounded-3xl p-8 text-white h-full flex flex-col justify-between shadow-xl">
               <div>
                 <div className="flex items-center gap-3 mb-6">

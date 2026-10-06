@@ -3,9 +3,11 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
+import Services from './components/Services';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import ProjectDetail from './components/ProjectDetail';
+import Testimonials from './components/Testimonials';
 import Resume from './components/Resume';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -45,8 +47,10 @@ export default function App() {
         <Hero />
         <About />
         <Skills />
+        <Services />
         <Experience />
         <Projects onProjectClick={handleProjectClick} />
+        <Testimonials />
         <Resume />
         <Contact />
       </main>

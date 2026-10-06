@@ -86,7 +86,7 @@ export default function Projects({ onProjectClick }: Props) {
             <button
               key={cat.key}
               onClick={() => setActiveCategory(cat.key)}
-              className={`px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 ${
+              className={`px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 cursor-pointer ${
                 activeCategory === cat.key
                   ? 'bg-gray-900 text-white shadow-lg'
                   : 'bg-white text-gray-700 hover:bg-gray-100 border-2 border-gray-200'
@@ -99,7 +99,7 @@ export default function Projects({ onProjectClick }: Props) {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
-            <TiltCard key={project.id} intensity={12} className="project-card">
+            <TiltCard key={project.id} intensity={5} className="project-card">
               <div 
                 onClick={() => onProjectClick(project.id)}
                 className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 h-full cursor-pointer border-2 border-gray-200 hover:border-gray-900"

@@ -30,7 +30,7 @@ export default function Footer() {
           <motion.button
             onClick={scrollToTop}
             whileHover={{ y: -5 }}
-            className="p-4 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-colors"
+            className="p-4 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-colors cursor-pointer"
           >
             <ArrowUp size={24} />
           </motion.button>

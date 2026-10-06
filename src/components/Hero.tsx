@@ -107,7 +107,7 @@ export default function Hero() {
 
             <h1
               ref={titleRef}
-              className="text-6xl sm:text-7xl lg:text-8xl font-black text-gray-900 leading-none"
+              className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 leading-none"
               style={{ perspective: '1000px' }}
             >
               {titleText.split('').map((char, i) => (
@@ -123,7 +123,7 @@ export default function Hero() {
 
             <p
               ref={subtitleRef}
-              className="text-2xl sm:text-3xl text-gray-600 font-light leading-relaxed"
+              className="text-xl sm:text-2xl text-gray-600 font-light leading-relaxed"
             >
               Digital Marketing Manager crafting{' '}
               <span className="font-bold text-indigo-600">
@@ -190,7 +190,7 @@ export default function Hero() {
 
           {/* Right - 3D Image with Tilt */}
           <div className="flex justify-center lg:justify-end">
-            <TiltCard intensity={20} className="relative">
+            <TiltCard intensity={8} className="relative">
               <div
                 ref={imageRef}
                 className="relative w-80 h-80 lg:w-96 lg:h-96"

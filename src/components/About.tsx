@@ -87,7 +87,7 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <TiltCard intensity={10} className="relative">
+            <TiltCard intensity={5} className="relative">
               <div className="relative">
                 {/* Main image container */}
                 <div className="relative bg-white rounded-3xl p-8 shadow-xl border-2 border-gray-200">
@@ -130,7 +130,7 @@ export default function About() {
                   {/* Floating stats */}
                   <div className="absolute -top-6 -right-6 bg-white rounded-2xl p-4 shadow-xl border-2 border-gray-100">
                     <div className="text-center">
-                      <div className="text-2xl font-black text-gray-900">300%</div>
+                      <div className="text-2xl font-black text-gray-900">3x</div>
                       <div className="text-xs text-gray-600 font-semibold">Traffic Growth</div>
                     </div>
                   </div>
@@ -172,7 +172,7 @@ export default function About() {
 
             <div className="grid grid-cols-2 gap-6">
               {highlights.map((item, index) => (
-                <TiltCard key={item.title} intensity={8} className="about-card">
+                <TiltCard key={item.title} intensity={4} className="about-card">
                   <div
                     className="p-6 rounded-2xl bg-white border-2 border-gray-200 hover:border-gray-900 transition-all duration-300 group"
                   >
